@@ -5,7 +5,7 @@ var webpack = require('webpack');
 var path = require('path');
 var node_modules = path.resolve(__dirname, 'node_modules');
 var publicPath = 'http://localhost:9090/';
-//var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
+var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 let ROOT_PATH = path.resolve(__dirname);
 
 var devConfig ={
@@ -58,7 +58,7 @@ var devConfig ={
                 loader:'url?limit=20480&name=dist/other/[name].[hash:8].[ext]'
             }
         ],
-        noParse : 'react'
+        noParse : ['react','co']
     },
     plugins: [
         //new webpack.optimize.OccurenceOrderPlugin(),

@@ -34,6 +34,7 @@ function Reg(req,res) {
         newUser.save(function (err, user) {
             if (err) {
                 req.flash('error', err);
+                console.log(err);
                 return res.redirect('/reg');//注册失败返回主册页
             }
             req.session.user = newUser;//用户信息存入 session
