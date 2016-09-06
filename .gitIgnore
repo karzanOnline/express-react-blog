@@ -1,0 +1,9 @@
+node_modules
+.idea
+*.log
+*.mdb
+*.ldb
+*.db
+checkInSys
+# 根目录下的zip文件都不上传
+/*.zip
