@@ -1,0 +1,36 @@
+/*
+  输入框公共样式
+*/
+@mixin horizontal-input-normal(){
+  border: 1px solid #eceaea;
+  resize: none;
+  outline: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition:border .1s linear,box-shadow .1s linear;
+}
+/*
+  text输入框基础样式
+*/
+@mixin horizontal-input-text($height:20px,$lineHeight:20px){
+  @include horizontal-input-normal();
+  height: $height;
+  line-height: $lineHeight;
+  padding: 5px 10px;
+  background-color: #ffffff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition:border .1s linear,box-shadow .1s linear;
+}
+@mixin input-text-focus(){
+  border-color: #55abed;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.1),0 0 8px rgba(116,197,238,.6);
+}
+@mixin horizontal-textarea($width:200px,$height:100px){
+  width: $width;
+  height: $height;
+  padding: 5px 10px;
+  @include horizontal-input-normal();
+}

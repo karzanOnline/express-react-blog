@@ -1,14 +1,16 @@
 /**
  * Created by caozheng on 2016/9/5.
  */
-/*{
-    success : 'true',
-        msg : '404',
-    resultMap : {
-        name : 'caozheng',
-        age: '18'
-    }
-};*/
+/*
+* 示例返回数据格式
+* let resultMap = {
+ success : 'true',
+ msg : '404',
+ resultMap : {name : 'caozheng', age: '18'}
+ };
+*
+* */
+
 module.exports ={
     set:function(success,msg,resultMap){
         return JSON.stringify({

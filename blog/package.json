@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "cross-env NODE_ENV=dev&&supervisor --ingnore client app",
-    "static" : "webpack-dev-server --devtool eval --progress --colors --hot --port 9090"
+    "server": "cross-env NODE_ENV=dev&&supervisor --ingnore client app",
+    "static" : "webpack-dev-server --devtool eval --inline --progress --colors --hot --port 9090",
+    "dev":"node hot.js"
   },
   "dependencies": {
     "babel-loader": "latest",
@@ -27,7 +28,7 @@
     "json-loader": "^0.5.4",
     "jsx-loader": "~0.13.2",
     "morgan": "~1.7.0",
-    "node-sass": "^3.4.2",
+    "node-sass": "3.8.0",
     "ramda": "latest",
     "raw-loader": "~0.5.1",
     "react": "~0.14.2",
@@ -40,7 +41,7 @@
     "supervisor": "latest",
     "url-loader": "~0.5.6",
     "webpack": "~1.12.6",
-    "webpack-dev-server": "~1.12.1",
+    "webpack-dev-server": "latest",
     "webpack-require-http": "latest",
     "mongodb": "latest",
     "express-session": "latest",

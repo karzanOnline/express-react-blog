@@ -3,24 +3,17 @@
  */
 // import React from 'react';
 // import ReactDOM from 'react-dom';
-
-let Index = React.createClass({
-    componentDidMount : function () {
-        $.get('/getPost',{},(data)=>{
-            console.log(data)
-        },'json')
-
-    },
-    render : function () {
-        return <div>
-            <p><h2><a href="#">曹政的第一篇文章</a></h2></p>
-            <p className="info">
-                作者：<a href="#">caozheng_550</a> |
-                日期：2016-9-5 15:17
-            </p>
-            <p>这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文</p>
-        </div>
+import '{public}/css/index.scss';
+import React, { Component } from 'react'
+import AppRouter from './router';
+class Root extends Component{
+    render (){
+        return(
+            <div>
+                <AppRouter/>
+            </div>
+        )
     }
 
-});
-ReactDOM.render(<Index/>,document.getElementById('wrapper'));
+}
+ReactDOM.render(<Root/>,document.getElementById('wrapper'));

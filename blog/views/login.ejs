@@ -1,7 +1,22 @@
 <%- include header %>
-<form method="post">
-    用户名：<input type="text" name="name"/><br />
-    密码：  <input type="password" name="password"/><br />
-    <input type="submit" value="登录"/>
-</form>
+<!--<form class="form-style" method="post">-->
+    <!--用户名：<input type="text" name="name"/><br />-->
+    <!--密码：  <input type="password" name="password"/><br />-->
+    <!--<input type="submit" value="登录"/>-->
+<!--</form>-->
+<div class="form-style">
+    <div class="item-input">
+        <span>用户名：</span>
+        <input type="text" name="name"/>
+    </div>
+    <div class="item-input">
+        <span class="item-pass">密码：</span>
+        <input type="text" name="password"/>
+    </div>
+    <div class="item-input">
+        <button class="submit-button">提交</button>
+    </div>
+</div>
+<div id="wrapper"></div>
 <%- include footer %>
+<%- include loginFooter%>
