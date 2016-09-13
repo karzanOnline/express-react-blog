@@ -4,14 +4,20 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 import '{public}/css/index.scss';
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {Provider } from 'react-redux';
 import AppRouter from './router';
+import helloStore from './redux/stores/helloStore';
+
+console.log(helloStore);
+console.log('log from index jsx');
+
 class Root extends Component{
     render (){
         return(
-            <div>
+            <Provider store ={helloStore}>
                 <AppRouter/>
-            </div>
+            </Provider>
         )
     }
 

@@ -18,6 +18,10 @@ function checkNotLogin(req,res,next) {
     next()
 }
 
+function toString(data) {
+    return data.toString()
+}
+
 //test
 
 module.exports ={

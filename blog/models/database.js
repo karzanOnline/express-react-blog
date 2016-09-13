@@ -20,31 +20,36 @@ DataBase.prototype = {
                 return db.collection(collections)
             })
             .then((collection)=>{
-                return collection.insert(data,{safe:true})
+                collection.insert(data,{safe:true},function (err,user) {
+                    mongodb.close();
+                    callback(null,user.ops[0]);//插入成功 返回用戶存儲文檔
+                })
             })
-            .then((user)=>{
-                mongodb.close();
-                callback(null,user[0]);//插入成功 返回用戶存儲文檔
-            })
+            // .then((user)=>{
+            //     mongodb.close();
+            //     console.log(user[0]);
+            //     callback(null,user[0]);//插入成功 返回用戶存儲文檔
+            // })
             .catch((err)=>{
                 mongodb.close();
                 callback(err)
             });
     },
     findOne : function (collections,data,callback) {
+        // console.log('findOne ******************')
         this.connection
-            .then((db)=>{
+            .then((db)=> {
                 return db.collection(collections)
             })
-            .then((collection)=>{
-                return collection.findOne(data,{safe:true})
+            .then((collection)=> {
+                collection.findOne(data, function (err, user) {
+                    mongodb.close();
+                    callback(null, user);
+                })
             })
-            .then((user)=>{
+            .catch((err)=> {
                 mongodb.close();
-                callback(null,user);
-            })
-            .catch((err)=>{
-                mongodb.close();
+                console.log('异常');
                 callback(err);
             })
     }

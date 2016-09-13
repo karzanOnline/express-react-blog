@@ -30,6 +30,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 /*添加flash功能*/
 app.use(flash());
+/*添加logger中间件
+* 2016.09.12
+* */
+app.use((req,res,next)=>{
+    console.log('[Logger]',req.method,req.originalUrl);
+    next();
+});
 
 //设置/public/favicon.ico为favicon图标。
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

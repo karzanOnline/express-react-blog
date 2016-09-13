@@ -81,7 +81,7 @@ var devConfig ={
         //模块别名定义，方便后续直接引用别名，无须多写长长的地址
         alias: {
             '{server}' : ROOT_PATH+'/server',
-            '{public}' : ROOT_PATH+'/public'
+            '{public}' : ROOT_PATH+'/public',
         }
     }
 };

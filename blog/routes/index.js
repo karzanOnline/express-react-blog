@@ -22,7 +22,8 @@ module.exports = function (app) {
         posts: posts,
         success: req.flash('success').toString(),
         error: req.flash('error').toString(),
-        env : 'development'
+        env : 'development',
+        pageAuthor:['01','02','03'].toString()
       });
     });
   });
@@ -38,9 +39,10 @@ module.exports = function (app) {
   // });
   // /*注册post*/
   // app.post('/reg',CheckNotLogin);
-  // app.post('/reg', function (req, res) {
-  //   Reg(req,res);
-  // });
+  app.post('/reg', function (req, res) {
+    console.log('reg from router $$$$$$$$$$$$$$$$$$$');
+    Reg(req,res);
+  });
   //
   // app.get('/login',CheckNotLogin);
   // app.get('/login', function (req, res) {
@@ -52,9 +54,10 @@ module.exports = function (app) {
   //
   // });
   // app.post('/login',CheckNotLogin);
-  // app.post('/login', function (req, res) {
-  //   Login(req,res)
-  // });
+  app.post('/login', function (req, res) {
+    console.log('login router');
+    Login(req,res)
+  });
   //
   // app.get('/post',CheckLogin);
   // app.get('/post', function (req, res) {
@@ -85,14 +88,33 @@ module.exports = function (app) {
   //   res.redirect('/');//登出成功后跳转到主页
   // });
 
-  /*自己建立的路由*/
-  app.get('/getPost',function (req,res) {
-    let user = req.session.user,
-        data = {user : user};
-    if (!user){
-      res.send(Result.set(false,'查找不到sessionUser',{}))
-    }
+  // app.get('/getPost',function (req,res) {
+  //   let user = req.session.user,
+  //       data = {user : user};
+  //   if (!user){
+  //     res.send(Result.set(false,'查找不到sessionUser',{}))
+  //   }
+  //   //TODO
+  //   res.status(200).send(Result.set(true,'成功',{name:'caozheng'}))
+  // })
+  app.post('/post/savePost',function (req,res) {
     //TODO
-    res.status(200).send(Result.set(true,'成功',{name:'caozheng'}))
+    let sessionUser = req.session.user,
+        data = JSON.parse(req.body.d);
+    /*tostring 是为了防止有0的输入*/
+    if (req.session.user&&data.title.toString()&&data.body.toString()){
+      new Post(sessionUser.name,data.title,data.body).save(function (err) {
+        if (err){
+          res.send(Result.set(false,'失败',{msg:err}))
+        }else {
+          res.send(Result.set(true,'成功',{}));
+        }
+      })
+    }else {
+      res.send(Result.set(false,'失败',{msg:'传参数错误！'}))
+    }
+        // post  = new Post(sessionUser.name,req.body.title,req.body.post);
+
+    // res.status(200).send(Result.set(true,'成功',{name:'caozheng'}))
   })
 };

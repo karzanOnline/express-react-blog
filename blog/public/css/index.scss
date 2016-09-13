@@ -20,6 +20,10 @@ article a{color:#31afee;text-decoration:none;}
 article a:hover{color:#31afee;text-decoration:underline;}
 .info{font-size:14px;}
 .form-style{
+  width: 290px;
+  margin: 100px auto;
+  border: 1px solid #dddddd;
+  box-shadow: #ddd 1px 1px 9px 2px;
   input{
     width: 175px;
     height: 44px;

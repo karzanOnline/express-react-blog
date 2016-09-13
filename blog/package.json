@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "server": "cross-env NODE_ENV=dev&&supervisor --ingnore client app",
-    "static" : "webpack-dev-server --devtool eval --inline --progress --colors --hot --port 9090",
-    "dev":"node hot.js"
+    "static": "webpack-dev-server --devtool eval --inline --progress --colors --hot --port 9090",
+    "dev": "node hot.js"
   },
   "dependencies": {
     "babel-loader": "latest",
@@ -15,7 +15,7 @@
     "babel-preset-stage-0": "latest",
     "body-parser": "~1.15.1",
     "bundle-loader": "^0.5.4",
-    "jquery" : "latest",
+    "jquery": "latest",
     "co-body": "latest",
     "co-views": "~0.2.0",
     "cookie-parser": "~1.4.3",
@@ -33,7 +33,9 @@
     "raw-loader": "~0.5.1",
     "react": "~0.14.2",
     "react-dom": "~0.14.2",
+    "redux" : "latest",
     "react-router": "latest",
+    "redux-thunk":"latest",
     "reload": "latest",
     "sass-loader": "~3.0.0",
     "serve-favicon": "~2.3.0",
@@ -47,12 +49,14 @@
     "express-session": "latest",
     "connect-mongo": "latest",
     "connect-flash": "0.1.1",
-    "co" : "latest"
+    "co": "latest",
+    "rc-queue-anim": "latest"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-preset-react-hmre": "^1.1.1",
-    "babel-preset-stage-2": "^6.13.0"
+    "babel-preset-stage-2": "^6.13.0",
+    "redux-devtools": "^3.3.1"
   }
 }

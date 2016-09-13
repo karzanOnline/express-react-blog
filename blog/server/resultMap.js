@@ -13,11 +13,11 @@
 
 module.exports ={
     set:function(success,msg,resultMap){
-        return JSON.stringify({
+        return {
             success:success,
             description:msg,
             resultMap:resultMap
-        });
+        };
     },
     getMesssageByErrCode:function(errCode) {
         var msg = '';
