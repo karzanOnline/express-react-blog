@@ -26,20 +26,7 @@ class Login extends React.Component{
     }
 
     submitLogin(){
-        // let _this = this;
-        // let obj = {
-        //     d:JSON.stringify({
-        //         name : _this.refs.user_name.value,
-        //         password : _this.refs.user_pass.value,
-        //     })
-        // };
-        // $.post('/login',obj,(data)=>{
-        //     if (data.success){
-        //
-        //     }else {
-        //         alert(data.description)
-        //     }
-        // },'json')
+        
         let {dispatch} = this.props.route;
         dispatch(submitLogin())
     }
