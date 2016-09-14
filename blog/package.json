@@ -50,7 +50,10 @@
     "connect-mongo": "latest",
     "connect-flash": "0.1.1",
     "co": "latest",
-    "rc-queue-anim": "latest"
+    "rc-queue-anim": "latest",
+    "immutable" :"latest",
+    "redux-immutable":"latest",
+    "react-router-redux":"latest"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",

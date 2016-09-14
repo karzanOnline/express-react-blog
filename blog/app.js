@@ -47,7 +47,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //
 routes(app);
-console.log('routes text');
 var reload = require('reload');
 var http = require('http');
 

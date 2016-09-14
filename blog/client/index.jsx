@@ -8,15 +8,19 @@ import React, { Component } from 'react';
 import {Provider } from 'react-redux';
 import AppRouter from './router';
 import helloStore from './redux/stores/helloStore';
+import {syncHistoryWithStore,routerReducer } from 'react-router-redux';
+import {browserHistory } from 'react-router';
 
-console.log(helloStore);
-console.log('log from index jsx');
-
+const history = syncHistoryWithStore(browserHistory, helloStore, {
+    selectLocationState (state) {
+        return state.get('routing') ;
+    }
+});
 class Root extends Component{
     render (){
         return(
             <Provider store ={helloStore}>
-                <AppRouter/>
+                <AppRouter history={history}/>
             </Provider>
         )
     }

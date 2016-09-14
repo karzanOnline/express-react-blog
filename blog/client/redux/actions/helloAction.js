@@ -29,10 +29,26 @@ export function submitStart() {
     }
 }
 
-export function submitLogin() {
+export function submitLogin(obj) {
+    debugger;
     return dispatch =>{
         dispatch(submitStart());
-        // return $.post('/login',)
+        debugger;
+
+        return $.ajax({
+            type : 'post',
+            url : '/login',
+            dataType:'json',
+            data : obj
+        }).then((data)=>{
+            if (data.success) {
+                dispatch(submitSuccess(data))
+            }else{
+                dispatch(submitFauile())
+            }
+        }).catch((err)=>{
+            throw err
+        })
 
     }
 
