@@ -21,7 +21,6 @@
  - 添加Pubsub.js
  - 添加redux
 
-
- 2016.09.14 加入immutable 优化性能
+2016.09.14 加入immutable 优化性能
 
 
