@@ -10,6 +10,7 @@ import Login from './login';
 import Post from './post';
 import Register from './register';
 import PostIndex from './postIndex';
+
 class AppRouter extends Component{
     constructor(props) {
         super(props);
@@ -18,9 +19,11 @@ class AppRouter extends Component{
     }
 
     render (){
+        const history = this.props.history;
+        console.log(history);
         return(
             <QueueAnim interval={100} duration={1500}>
-                <Router history={browserHistory} >
+                <Router history={history} >
                     <Route path="/" {...this.props} component={Main} ignoreScrollBehavior>
                         <IndexRoute component={PostIndex} title = "主页"/>
                         <Route path="index" component={PostIndex} title="主页"/>
@@ -37,7 +40,7 @@ class AppRouter extends Component{
 function select(state) {
     //console.log(state.submitReduce.submitState);
     return{
-        submitState : state.submitReduce.submitState
+        submitState : state.get('submitReduce').get('submitState')
     }
 }
 export default connect(select)(AppRouter)

@@ -8,6 +8,8 @@ var crypto = require('crypto'),
     Result = require('../../server/resultMap');
 function Login(req,res) {
     //生成密码的 md5 值
+
+    console.log("=================")
     var md5 = crypto.createHash('md5'),
         password = md5.update(JSON.parse(req.body.d).password).digest('hex');
     //检查用户是否存在
@@ -28,7 +30,7 @@ function Login(req,res) {
         //用户名密码都匹配后，将用户信息存入 session
         req.session.user = user;
         req.flash('success', '登陆成功!');
-        res.send(Result.set(false,'登陆成功!',{msg:'J000000'}));
+        res.send(Result.set(true,'登陆成功!',{msg:'J000000'}));
         //res.redirect('/');//登陆成功后跳转到主页
     });
 }

@@ -26,9 +26,15 @@ class Login extends React.Component{
     }
 
     submitLogin(){
-        
-        let {dispatch} = this.props.route;
-        dispatch(submitLogin())
+
+        let {dispatch} = this.props.route,
+            obj = {
+                d:JSON.stringify({
+                    name : this.refs.user_name.value,
+                    password : this.refs.user_pass.value
+                })
+            };
+        dispatch(submitLogin(obj))
     }
 
 
