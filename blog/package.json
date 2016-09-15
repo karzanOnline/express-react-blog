@@ -28,7 +28,7 @@
     "json-loader": "^0.5.4",
     "jsx-loader": "~0.13.2",
     "morgan": "~1.7.0",
-    "node-sass": "3.8.0",
+    "node-sass": "~3.8.0",
     "ramda": "latest",
     "raw-loader": "~0.5.1",
     "react": "~0.14.2",
