@@ -5,7 +5,10 @@
 import {Component} from 'react';
 import '{public}/css/post.scss';
 import QueueAnim from 'rc-queue-anim';
-export default class Post extends Component{
+import {connect} from 'react-redux';
+import {publishPost,postReset} from './redux/actions/publishPost'
+import {browserHistory} from 'react-router'
+class Post extends Component{
     constructor(props){
         super(props)
     }
@@ -22,17 +25,12 @@ export default class Post extends Component{
                 body : _this.refs.post_body.value
             })
         };
-        $.post('/post/savePost',obj,(data)=>{
-            if (data.success){
-
-            }else{
-                alert(data.description)
-            }
-        },'json')
-
+        let {dispatch} = _this.props
+        dispatch(publishPost(obj));
     }
 
     render (){
+        const  props = this.props;
         return (
             <QueueAnim interval={100} duration={1500}>
             <div key="1" style={{padding:'20px'}}>
@@ -53,9 +51,24 @@ export default class Post extends Component{
                 <div className="form-col text-center">
                     <button className="button-primary" onClick={this.submitPost.bind(this)}>发布</button>
                 </div>
+                <div>{props.submitCode}</div>
             </div>
             </QueueAnim>
         )
     }
 }
+
+function mapStateToProps(state,history){
+debugger;
+    if(state.getIn(['publishPost','data','success'])){
+        history.routes[0].dispatch(postReset())
+        browserHistory.push('/index')
+    }
+    return {
+        submitCode : state.getIn(['publishPost','data','success'])
+    }
+
+}
+
+export default connect(mapStateToProps)(Post)
 

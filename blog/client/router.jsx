@@ -14,13 +14,12 @@ import PostIndex from './postIndex';
 class AppRouter extends Component{
     constructor(props) {
         super(props);
-        console.log(this.props);
-        console.log('router')
+    
     }
 
     render (){
         const history = this.props.history;
-        console.log(history);
+        //console.log(history);
         return(
             <QueueAnim interval={100} duration={1500}>
                 <Router history={history} >
@@ -37,10 +36,11 @@ class AppRouter extends Component{
     }
 
 }
-function select(state) {
-    //console.log(state.submitReduce.submitState);
-    return{
-        submitState : state.get('submitReduce').get('submitState')
+function mapStateToProps(state) {
+    console.log('==========')
+    console.log(state)
+    return {
+        routerState : ''
     }
 }
-export default connect(select)(AppRouter)
+export default connect(mapStateToProps)(AppRouter)

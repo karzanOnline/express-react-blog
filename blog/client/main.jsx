@@ -15,7 +15,8 @@ class Main extends Component{
         this.state ={
             linkData : ''
         };
-        //console.log(this.props)
+        console.log('from main constructor')
+        console.log(this.props)
     }
 
     /*
@@ -46,11 +47,11 @@ class Main extends Component{
         let _this = this,
             route = _this.props.location.pathname;
         switch (route){
-            case '/' :{return '主页'}break;
-            case '/index':{return '主页'}break;
-            case '/post' :{return '文章'}break;
-            case '/login' :{return  '登陆'}break;
-            case '/register':{return '注册'}break;
+            case '/' :{return '主页'}
+            case '/index':{return '主页'}
+            case '/post' :{return '文章'}
+            case '/login' :{return  '登陆'}
+            case '/register':{return '注册'}
             default:{return '未知'}
         }
 
@@ -88,7 +89,10 @@ class Main extends Component{
         )
     }
 }
-function select (){
+function mapStateToProps(state) {
+    return {
+        mainState : ''
+    }
 
 }
-export default connect(select)(Main)
+export default connect(mapStateToProps)(Main)

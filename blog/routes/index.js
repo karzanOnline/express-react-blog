@@ -102,8 +102,10 @@ module.exports = function (app) {
     let sessionUser = req.session.user,
         data = JSON.parse(req.body.d);
     /*tostring 是为了防止有0的输入*/
+    console.log('==============')
     if (req.session.user&&data.title.toString()&&data.body.toString()){
       new Post(sessionUser.name,data.title,data.body).save(function (err) {
+        
         if (err){
           res.send(Result.set(false,'失败',{msg:err}))
         }else {
@@ -116,5 +118,22 @@ module.exports = function (app) {
         // post  = new Post(sessionUser.name,req.body.title,req.body.post);
 
     // res.status(200).send(Result.set(true,'成功',{name:'caozheng'}))
+  })
+  // 创建取出postData的协议
+  app.post('/obtainPost',(req,res)=>{
+    let sessionUser = req.session.user;
+    //判断是否有权限获取postData
+    // if(sessionUser){
+      Post.get(null,function (err,postData){
+        //返回数据
+        console.log('from router ')
+        console.log(postData)
+        err?res.send(Result.set(false,'失败',{msg:err})):res.send(Result.set(true,'成功',{postData:postData}));
+      })
+    // }else{
+    //   // 这个地方要不要返回个403呢？先加上吧
+    //   res.state(403).send(Result.set(false,'失败',{msg:'没有权限'}))
+    // }
+
   })
 };

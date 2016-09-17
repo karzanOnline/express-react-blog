@@ -29,11 +29,11 @@ export function submitStart() {
     }
 }
 
-export function submitLogin(obj) {
-    debugger;
+export function submitLogin(obj,state) {
+
     return dispatch =>{
+
         dispatch(submitStart());
-        debugger;
 
         return $.ajax({
             type : 'post',

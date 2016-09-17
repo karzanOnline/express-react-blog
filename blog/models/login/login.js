@@ -20,6 +20,7 @@ function Login(req,res) {
             res.send(Result.set(false,'用户不存在!',{msg:err}));
             //return res.redirect('/login');//用户不存在则跳转到登录页
         }
+        console.log(user);
         console.log("------------------------------");
         //检查密码是否一致
         if (user.password != password) {

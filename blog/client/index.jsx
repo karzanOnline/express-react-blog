@@ -16,6 +16,7 @@ const history = syncHistoryWithStore(browserHistory, helloStore, {
         return state.get('routing') ;
     }
 });
+
 class Root extends Component{
     render (){
         return(

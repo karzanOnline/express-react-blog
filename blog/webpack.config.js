@@ -23,13 +23,15 @@ var devConfig ={
             "jquery": "jQuery",
             "react": "React",
             "react-dom": "ReactDOM",
-            "zepto": "Zepto"
+            "zepto": "Zepto",
+            "immutable":"Immutable"
         },
         require('webpack-require-http')
     ],
     ProvidePlugin :{
         "React" : 'react',
-        "ReactDOM":"react-dom"
+        "ReactDOM":"react-dom",
+        //"Immutable":"immutable"
     },
     module:{
         loaders:[

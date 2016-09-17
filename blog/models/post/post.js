@@ -63,6 +63,8 @@ Post.get = function (name,callback) {
         return collection.find(query).sort({time:-1})
             .toArray()
     }).then((docs)=>{
+        console.log('**********')
+        console.log(docs)
         mongodb.close();
         return callback(null,docs)
     }).catch(function (err) {

@@ -3,38 +3,54 @@
  */
 import {Component} from 'react';
 import QueueAnim from 'rc-queue-anim';
-export default class PostIndex extends Component{
+import { connect } from 'react-redux';
+import {postData} from './redux/actions/indexpost';
+class PostIndex extends Component{
     constructor(props){
         super(props)
     }
 
     componentDidMount(){
         console.log('index post page');
+        let {dispatch} = this.props;
+        dispatch(postData())
 
     }
 
+
     render (){
+        const props = this.props;
+        console.log('render in PostIndex')
+        //console.log(props.postData.get('data'))
+        let resultMap = props.postData.get('data').get('resultMap')
         return(
             <QueueAnim interval={100} duration={1500}>
-            <div key="1">
+            {
+                resultMap&&resultMap.get('postData').map((item,index)=>{
+                    return (
+                        <div key={index}>
+                            <h2><a href="#">{item.get('title')}</a></h2>
+                            <p className='info'>
+                            <span>作者：</span><a href="#">{item.get('name')}</a>  |  
+                            <span>日期：</span>{item.getIn(['time','minute'])}
+                            </p>
+                            <p>{item.get('post')}</p>
+                        </div>
+                        )
+                })
+            }
 
-                <p><h2><a href="#">第一篇文章</a></h2></p>
-                <p className="info">
-                作者：<a href="#"></a> | caozheng_550
-                日期：2019.03.15
-                </p>
-                <p>这里是正文这里是正文这里是正文这里是正文这里是正文这里是正文这里是正文这里是正文</p>
-
-            </div>
-            <div key="2">
-                <p><h2><a href="#">第一篇文章</a></h2></p>
-                <p className="info">
-                    作者：<a href="#"></a> | caozheng_550
-                    日期：2019.03.15
-                </p>
-                <p>这里是正文这里是正文这里是正文这里是正文这里是正文这里是正文这里是正文这里是正文</p>
-            </div>
             </QueueAnim>
         )
     }
 }
+
+function mapStateToProps (state){
+    
+    return {
+        postData : state.get('indexPost')
+    }
+
+}
+
+export default connect(mapStateToProps)(PostIndex)
