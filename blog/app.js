@@ -18,7 +18,7 @@ var app = express();
 app.use(session({
     secret: settings.cookieSecret,
     key: settings.db,//cookie name
-    cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
+    cookie: {maxAge: 1000 * 60 * 20 },//20分钟session失效
     store: new MongoStore({
         url: 'mongodb://localhost/blog'
     })
