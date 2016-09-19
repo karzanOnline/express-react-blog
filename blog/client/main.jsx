@@ -15,7 +15,7 @@ class Main extends Component{
         this.state ={
             linkData : ''
         };
-        console.log('from main constructor')
+        console.log('from main constructor');
         console.log(this.props)
     }
 
