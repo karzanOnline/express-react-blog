@@ -8,7 +8,7 @@
 
  - async.js 模拟ES7实现async await（通过阅读TJ大神的CO代码，虽然不难但是重要的是Idea）
  - 将之前通过回调存取数据 已用Promise重构
-![123](https://raw.githubusercontent.com/karzanOnline/express-mongodb-react-blog/master/test.gif)
+![123](https://raw.githubusercontent.com/karzanOnline/express-mongodb-react-blog/master/jdfw.gif)
 
 2016.09.08 更新版本将路由交于前端控制  React-router实现单页面刷新(后续将会加入React在server渲染)
 
