@@ -2,6 +2,8 @@
  * Created by caozheng on 2016/9/5.
  */
 var mongodb = require('../db');
+//支持markdown语法
+var markdown = require('markdown').markdown;
 /*文章构造函数*/
 function Post(name, title, post) {
     this.name = name;
@@ -63,6 +65,9 @@ Post.get = function (name,callback) {
             .toArray()
     }).then((docs)=>{
         mongodb.close();
+        docs.forEach(function(doc){
+            doc.post = markdown.toHTML(doc.post)ß
+        })
         return callback(null,docs)
     }).catch(function (err) {
         mongodb.close();
