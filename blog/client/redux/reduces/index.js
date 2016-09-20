@@ -12,6 +12,8 @@ import loginReduce from './helloReducers';
 import indexPost from './indexPost';
 //发布文章
 import publishPost from './publishPost';
+//控制权限
+import getAuthority from './authorityReduce';
 
 
 //let name = Object.assign({},Decompose(test),{title:'jjj'});
@@ -25,6 +27,7 @@ const indexReduces = combineReducers(
         //这里添加新的reduce
         loginReduce,
         publishPost,
+        getAuthority,
         indexPost),{routing:routerReducer})
 )
 
@@ -33,7 +36,6 @@ const indexReduces = combineReducers(
 //这里出现一个问题如果都是将reduce全部加载进来
 // 会对性能有很大的影响。
 // 后面版本采用动态加载reduce
-
 
 function Decompose() {
     let tempObj = {};

@@ -11,21 +11,23 @@ var Result = require('../server/resultMap');
 module.exports = function (app) {
   /* GET home page. */
   app.get('*', function (req, res) {
-    console.log('caozheng show that');
-    Post.get(null, function (err, posts) {
-      if (err) {
-        posts = [];
-      }
-      res.render('index', {
-        title: '主页',
-        user: req.session.user,
-        posts: posts,
-        success: req.flash('success').toString(),
-        error: req.flash('error').toString(),
-        env : 'development',
-        pageAuthor:['01','02','03'].toString()
-      });
+    // Post.get(null, function (err, posts) {
+    //   if (err) {
+    //     posts = [];
+    //   }
+    // });
+    console.log('**************************')
+    res.render('index', {
+      title: '主页',
+      user: req.session.user,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString(),
+      env : 'development',
+      pageAuthor:['01','02','03'].toString()
     });
+    // res.renderToString('index',{
+    //
+    // })
   });
   // /*注册get*/
   // app.get('/reg',CheckNotLogin);
@@ -56,7 +58,14 @@ module.exports = function (app) {
   // app.post('/login',CheckNotLogin);
   app.post('/login', function (req, res) {
     console.log('login router');
-    Login(req,res)
+    // req.session.user = req.session.user;
+    Login(req,res);
+
+  });
+  app.post('/exit',function (req,res) {
+    req.session.user = null;
+    req.flash('success', '登出成功!');
+    res.send(Result.set(true,'登出成功！',{}));
   });
   //
   // app.get('/post',CheckLogin);

@@ -53,7 +53,6 @@ Post.get = function (name,callback) {
         /*打开数据库*/
         mongodb.open((err,db)=>{resolve(db)});
     }).then(function (db) {
-        console.log('openning then');
         return db.collection('posts');
     }).then(function (collection) {
         let query = {};
@@ -63,8 +62,6 @@ Post.get = function (name,callback) {
         return collection.find(query).sort({time:-1})
             .toArray()
     }).then((docs)=>{
-        console.log('**********')
-        console.log(docs)
         mongodb.close();
         return callback(null,docs)
     }).catch(function (err) {

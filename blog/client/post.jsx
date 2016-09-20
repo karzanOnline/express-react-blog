@@ -59,9 +59,8 @@ class Post extends Component{
 }
 
 function mapStateToProps(state,history){
-debugger;
     if(state.getIn(['publishPost','data','success'])){
-        history.routes[0].dispatch(postReset())
+        history.routes[0].dispatch(postReset());
         browserHistory.push('/index')
     }
     return {

@@ -6,17 +6,13 @@ import QueueAnim from 'rc-queue-anim';
 import {Link} from 'react-router';
 import { connect } from 'react-redux';
 import Pubsub from './pubsub';
-import LinkPage from './common/linkPage';
-import LINK_PAGE_DATA from './common/linkData';
+import {browserHistory } from 'react-router';
+import {getAuthority} from './redux/actions/authority';
+
 
 class Main extends Component{
     constructor(props){
         super(props);
-        this.state ={
-            linkData : ''
-        };
-        console.log('from main constructor');
-        console.log(this.props)
     }
 
     /*
@@ -38,10 +34,6 @@ class Main extends Component{
         // })
     }
 
-    // componentWillUpdate (){
-    //     console.log(12343)
-    // }
-
 
     getTitleName (){
         let _this = this,
@@ -54,6 +46,18 @@ class Main extends Component{
             case '/register':{return '注册'}
             default:{return '未知'}
         }
+    }
+
+    exitBlog (){
+        let {dispatch} = this.props.route;
+        $.post('/exit',{},(data)=>{
+            if (data.success){
+                dispatch(getAuthority(2));
+                browserHistory.push('/index')
+            }else{
+                alert(data.description)
+            }
+        },'json')
 
     }
 
@@ -61,7 +65,6 @@ class Main extends Component{
     //登录后所拥有权限  主页(1) 文章(2) 退出(3)
     render (){
         const props = this.props;
-        //console.log(props)
         return(
             <div>
                 <header>
@@ -69,12 +72,26 @@ class Main extends Component{
                 </header>
                 <nav>
                     <QueueAnim>
-                        {/*<LinkPage linkString={this.state.linkData}/>*/}
-                        <span><Link key="1" title="主页" to="/index">主页</Link></span>
+                        {
+                            props.routerState==1?(
+                                <div>
+                                    <span><Link key="1" title="主页" to="/index">主页</Link></span>
+                                    <span><Link key="2" title="文章" to="/post">文章</Link></span>
+                                    <span><a key="3" onClick={this.exitBlog.bind(this)} >退出</a></span>
+                                </div>
+                            ):(
+                                <div>
+                                    <span><Link key="1" title="主页" to="/index">主页</Link></span>
+                                    <span><Link key="4" title="登陆" to="/login">登陆</Link></span>
+                                    <span><Link key="5" title="注册" to="/register">注册</Link></span>
+                                </div>
+                            )
+                        }
+                        {/*<span><Link key="1" title="主页" to="/index">主页</Link></span>
                         <span><Link key="2" title="文章" to="/post">文章</Link></span>
                         <span><Link key="3" title="退出" to="/">退出</Link></span>
                         <span><Link key="4" title="登陆" to="/login">登陆</Link></span>
-                        <span><Link key="5" title="注册" to="/register">注册</Link></span>
+                        <span><Link key="5" title="注册" to="/register">注册</Link></span>*/}
                     </QueueAnim>
                 </nav>
 
@@ -90,8 +107,12 @@ class Main extends Component{
     }
 }
 function mapStateToProps(state) {
+
+    // if (document.getElementById('user').value){
+    //     routerState = 1
+    // }
     return {
-        mainState : ''
+        routerState : state.getIn(['getAuthority','routerState'])
     }
 
 }

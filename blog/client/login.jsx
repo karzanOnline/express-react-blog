@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 /*这个页面所用到的事件集合*/
 //TODO 这里需要修改
 import {submitLogin,submitStart} from './redux/actions/helloAction';
+import {getAuthority} from './redux/actions/authority';
 import {browserHistory} from 'react-router';
 
 
@@ -19,13 +20,13 @@ class Login extends React.Component{
 
 
     componentDidMount (){
+        debugger;
 
     }
 
     submitLogin(event){
         event.preventDefault();
         // browserHistory.push('/index')
-
         let {dispatch} = this.props.route,
             obj = {
                 d:JSON.stringify({
@@ -33,7 +34,15 @@ class Login extends React.Component{
                     password : this.refs.user_pass.value
                 })
             };
-        dispatch(submitLogin(obj));
+        $.post('/login',obj,(data)=>{
+            if (data.success){
+                dispatch(getAuthority(1));
+                browserHistory.push('/index')
+            }else{
+                alert(data.description)
+            }
+        },'json');
+        // dispatch(submitLogin(obj));
     }
 
     componentWillReceiveProps (props){
@@ -46,9 +55,6 @@ class Login extends React.Component{
         console.log(this.props);
         return(
             <QueueAnim interval={100} duration={1500}>
-            <div>{this.props.submitReduce&&this.props.submitReduce.get('submitState').toString()}</div>
-            <div>{this.props.submitReduce.get('data').toString()}</div>
-            {this.state&&this.state.submitReduce}
             <div key="1" className="form-style">
                 <div className="item-input">
                     <span>用户名：</span>
@@ -74,17 +80,18 @@ class Login extends React.Component{
 
 }
 
-function mapStateToProps(state,history) {
-    //从服务端获取数据后 跳转router
-    if(state.getIn(['submitReduce','data','success'])){
-        history.route.dispatch(submitStart())
-        browserHistory.push('/index')
-    }
+// function mapStateToProps(state,history) {
+//     //从服务端获取数据后 跳转router
+//     debugger;
+//     if(state.getIn(['submitReduce','data','success'])){
+//         history.route.dispatch(submitStart());
+//         browserHistory.push('/index')
+//     }
+//
+//     return {
+//         submitReduce : state.get('submitReduce')
+//     }
+//
+// }
 
-    return {
-        submitReduce : state.get('submitReduce')
-    }
-    
-}
-
-export default connect(mapStateToProps)(Login)
+export default connect()(Login)
