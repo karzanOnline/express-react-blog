@@ -25,7 +25,7 @@ class Post extends Component{
                 body : _this.refs.post_body.value
             })
         };
-        let {dispatch} = _this.props
+        let {dispatch} = _this.props;
         dispatch(publishPost(obj));
     }
 
@@ -45,7 +45,7 @@ class Post extends Component{
                     <label className="post-title">正文</label>
                     <textarea name="post"
                               ref="post_body"
-                              placeholder="请输入新文章的正文"
+                              placeholder="请输入新文章的正文(支持MarkDown语法)"
                               className="post-body"></textarea>
                 </div>
                 <div className="form-col text-center">

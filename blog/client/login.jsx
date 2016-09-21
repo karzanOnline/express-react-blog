@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import {submitLogin,submitStart} from './redux/actions/helloAction';
 import {getAuthority} from './redux/actions/authority';
 import {browserHistory} from 'react-router';
-
+import '{public}/css/login.scss';
 
 
 // import {Component} from 'react';
@@ -20,14 +20,13 @@ class Login extends React.Component{
 
 
     componentDidMount (){
-        debugger;
 
     }
 
     submitLogin(event){
         event.preventDefault();
         // browserHistory.push('/index')
-        let {dispatch} = this.props.route,
+        let {dispatch} = this.props,
             obj = {
                 d:JSON.stringify({
                     name : this.refs.user_name.value,
@@ -46,7 +45,6 @@ class Login extends React.Component{
     }
 
     componentWillReceiveProps (props){
-        debugger;
 
     }
 
@@ -61,6 +59,7 @@ class Login extends React.Component{
                     <input type="text"
                            placeholder="请输入用户名"
                            ref="user_name"
+                           autoComplete="new-password"
                            name="name"/>
                 </div>
                 <div className="item-input">
@@ -68,6 +67,7 @@ class Login extends React.Component{
                     <input type="password"
                            placeholder="请输入密码"
                            ref="user_pass"
+                           autoComplete="new-password"
                            name="password"/>
                 </div>
                 <div className="item-input">

@@ -40,6 +40,7 @@ export default class Login extends Component{
                     <input type="text"
                            placeholder="请输入用户名"
                            ref="user_name"
+                           autoComplete="off"
                            name="name"/>
                 </div>
                 <div className="item-input">
@@ -47,6 +48,7 @@ export default class Login extends Component{
                     <input type="password"
                            placeholder="请输入密码"
                            ref="user_pass"
+                           autoComplete="off"
                            name="password"/>
                 </div>
                 <div className="item-input">
@@ -54,6 +56,7 @@ export default class Login extends Component{
                     <input type="password"
                            placeholder="请输入密码"
                            ref="user_pass_re"
+                           autoComplete="off"
                            name="password"/>
                 </div>
                 <div className="item-input">

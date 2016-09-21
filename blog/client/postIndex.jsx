@@ -20,9 +20,7 @@ class PostIndex extends Component{
 
     render (){
         const props = this.props;
-        console.log('render in PostIndex')
-        //console.log(props.postData.get('data'))
-        let resultMap = props.postData.get('data').get('resultMap')
+        let resultMap = props.postData.get('data').get('resultMap');
         return(
             <QueueAnim interval={100} duration={1500}>
             {
@@ -34,7 +32,7 @@ class PostIndex extends Component{
                             <span>作者：</span><a href="#">{item.get('name')}</a>  |  
                             <span>日期：</span>{item.getIn(['time','minute'])}
                             </p>
-                            <p>{item.get('post')}</p>
+                            <p dangerouslySetInnerHTML={{__html:item.get('post')}}></p>
                         </div>
                         )
                 })
