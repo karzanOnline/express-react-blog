@@ -1,7 +1,10 @@
 @import "common";
-.item-input{
-  input{
-    @include horizontal-input-text;
-    height: 37px;
+.form-style{
+  background-color: #ffffff;
+  .item-input{
+    input{
+      @include horizontal-input-text;
+      height: 37px;
+    }
   }
 }

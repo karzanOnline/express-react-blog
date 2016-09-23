@@ -8,6 +8,10 @@ import { connect } from 'react-redux';
 import Pubsub from './pubsub';
 import {browserHistory } from 'react-router';
 import {getAuthority} from './redux/actions/authority';
+import Header from './header';
+/*left nav content*/
+import NavContent from './navContent';
+import '{public}/css/main.scss'
 
 
 class Main extends Component{
@@ -34,21 +38,6 @@ class Main extends Component{
         // })
     }
 
-
-    getTitleName (){
-        let _this = this,
-            route = _this.props.location.pathname;
-        switch (route){
-            case '/' :{return '主页'}
-            case '/index':{return '主页'}
-            case '/post' :{return '文章'}
-            case '/login' :{return  '登陆'}
-            case '/register':{return '注册'}
-            case '/info' :{return '个人信息'}
-            default:{return '未知'}
-        }
-    }
-
     exitBlog (){
         let {dispatch} = this.props.route;
         $.post('/exit',{},(data)=>{
@@ -68,11 +57,10 @@ class Main extends Component{
         const props = this.props;
         return(
             <div>
-                <header>
-                    <h1>{this.getTitleName()}</h1>
-                </header>
                 <nav>
+                    <NavContent/>
                     <QueueAnim>
+                        <div style={{margin:'40px 0'}}>
                         {
                             props.routerState==1?(
                                 <div>
@@ -89,18 +77,18 @@ class Main extends Component{
                                 </div>
                             )
                         }
-                        {/*<span><Link key="1" title="主页" to="/index">主页</Link></span>
-                        <span><Link key="2" title="文章" to="/post">文章</Link></span>
-                        <span><Link key="3" title="退出" to="/">退出</Link></span>
-                        <span><Link key="4" title="登陆" to="/login">登陆</Link></span>
-                        <span><Link key="5" title="注册" to="/register">注册</Link></span>*/}
+                        </div>
                     </QueueAnim>
                 </nav>
-
-                <article>
-                    <QueueAnim type={['right', 'left']} className="router-wrap">
-                        {React.cloneElement(props.children)}
-                    </QueueAnim>
+                <article className="main-article">
+                    <div>
+                      {/*  <Header {...props.location}/>*/}
+                        <QueueAnim type={['right', 'left']} className="router-wrap">
+                            <div className="article-inner">
+                                {React.cloneElement(props.children)}
+                            </div>
+                        </QueueAnim>
+                    </div>
                 </article>
 
             </div>

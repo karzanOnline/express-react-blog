@@ -1,0 +1,67 @@
+.nav-content{
+  .intrude-less{
+    width: 76%;
+    text-align: center;
+    margin: 112px auto 0;
+    .inner{
+      width: 100%;
+      height: 300px;
+      position: relative;
+      .profilepic{
+        position: relative;
+        border: 5px solid #fff;
+        border-radius: 300px;
+        width: 128px;
+        height: 128px;
+        margin: 0 auto;
+        overflow: hidden;
+        background-color: #88acdb;
+        -webkit-transition: all .2s ease-in;
+        -webkit-box-orient: horizontal;
+        -webkit-box-pack:center;
+        -webkit-box-align : center;
+        text-align: center;
+        .avatar{
+          border: 0;
+          vertical-align: middle;
+          max-width: 100%;
+          -webkit-border-radius: 300px;
+          -moz-border-radius: 300px;
+          border-radius: 300px;
+          opacity: 1;
+          -webkit-transition: all .2s ease-in;
+        }
+      }
+    }
+  }
+  .intro{
+    display: block;
+    .intro-user{
+      margin: .67em 0;
+      font-family: Roboto,serif;
+      color: #696969;
+      text-align: center;
+      font-size: 30px;
+      transition : .3s;
+    }
+    .intro-p{
+      color: #999;
+      font-size: 14px;
+      text-align: center;
+    }
+    .intro-info{
+      margin: .67em 0;
+      color: #696969;
+      font-weight: 500;
+    }
+  }
+
+}
+.overlay{
+  position: absolute;
+  margin-top: -112px;
+  width: 100%;
+  height: 180px;
+  background-color: #000000;
+  opacity: .7;
+}
