@@ -1,0 +1,32 @@
+
+.article-post{
+  background-color: #ffffff;
+  .article-header{
+    border-left:5px solid #4d4d4d;
+    padding: 30px 0 15px 25px;
+    padding-left: 7.6923%;
+    .article-title{
+      color: #696969;
+      margin-left: 0;
+      font-weight: 300;
+      line-height: 35px;
+      margin-bottom: 20px;
+      font-size: 26px;
+      transition: color .3s;
+    }
+  }
+  .article-entry{
+    display: block;
+    line-height: 1.8em;
+    padding-right: 7.6923%;
+    padding-left: 7.6923%;
+  }
+  .article-info{
+    padding-left: 20px;
+    margin: 30px 7.6923% 0;
+    margin-bottom: 30px;
+    min-height: 72px;
+    border-top: 1px solid #ddd;
+  }
+
+}

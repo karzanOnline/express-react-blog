@@ -1,6 +1,13 @@
 @import "common";
 ///*添加padding变量*/
 $padding: 20px !default;
+.from-style{
+  background-color: #ffffff;
+  .from-content{
+    display: block;
+    width: 550px;
+  }
+}
 .form-col{
   .post-title{
     display: block;
@@ -10,6 +17,7 @@ $padding: 20px !default;
     }
   .form-text-style{
     @include horizontal-input-text();
+    padding: 16px;
     &:focus{
       @include input-text-focus();
     }
