@@ -66,8 +66,8 @@ Post.get = function (name,callback) {
     }).then((docs)=>{
         mongodb.close();
         docs.forEach(function(doc){
-            doc.post = markdown.toHTML(doc.post)ß
-        })
+            doc.post = markdown.toHTML(doc.post);
+        });
         return callback(null,docs)
     }).catch(function (err) {
         mongodb.close();

@@ -1,0 +1,7 @@
+@import "common";
+.item-input{
+  input{
+    @include horizontal-input-text;
+    height: 37px;
+  }
+}

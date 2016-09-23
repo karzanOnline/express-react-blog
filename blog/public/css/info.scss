@@ -1,0 +1,25 @@
+@import "common";
+.wrap-main-content{
+  padding: 10px 30px;
+
+}
+.wrap-info{
+  position: relative;
+  display: flex;
+  .info-pic{
+    margin-right: 10px;
+    line-height: 70px;
+    text-align: center;
+  }
+  .info-icon{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }
+  .upload-button{
+    position: absolute;
+    top: 25%;
+    left :150px
+  }
+
+}

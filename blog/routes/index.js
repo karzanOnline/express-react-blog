@@ -11,20 +11,21 @@ var Result = require('../server/resultMap');
 module.exports = function (app) {
   /* GET home page. */
   app.get('*', function (req, res) {
-    // Post.get(null, function (err, posts) {
-    //   if (err) {
-    //     posts = [];
-    //   }
-    // });
-    console.log('**************************')
-    res.render('index', {
-      title: '主页',
-      user: req.session.user,
-      success: req.flash('success').toString(),
-      error: req.flash('error').toString(),
-      env : 'development',
-      pageAuthor:['01','02','03'].toString()
+    Post.get(null, function (err, posts) {
+      if (err) {
+        posts = [];
+      }
+      res.render('index', {
+        title: '主页',
+        user: req.session.user,
+        success: req.flash('success').toString(),
+        error: req.flash('error').toString(),
+        env : 'development',
+        pageAuthor:['01','02','03'].toString()
+      });
     });
+    console.log('**************************')
+
     // res.renderToString('index',{
     //
     // })

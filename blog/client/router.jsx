@@ -10,6 +10,7 @@ import Login from './login';
 import Post from './post';
 import Register from './register';
 import PostIndex from './postIndex';
+import EditInfo from './editInfo';
 
 class AppRouter extends Component{
     constructor(props) {
@@ -26,7 +27,8 @@ class AppRouter extends Component{
                     <Route path="/" {...this.props} component={Main} ignoreScrollBehavior>
                         <IndexRoute component={PostIndex} title = "主页"/>
                         <Route path="index" component={PostIndex} title="主页"/>
-                        <Route path="login" {...this.props} component={Login} title="登陆"/>
+                        <Route path="login" component={Login} title="登陆"/>
+                        <Route path="info" component={EditInfo} title="个人信息" />
                         <Route path="post" component={Post} title="发表文章" />
                         <Route path="register" component={Register} title="注册" />
                     </Route>

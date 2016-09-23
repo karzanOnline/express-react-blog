@@ -44,6 +44,7 @@ class Main extends Component{
             case '/post' :{return '文章'}
             case '/login' :{return  '登陆'}
             case '/register':{return '注册'}
+            case '/info' :{return '个人信息'}
             default:{return '未知'}
         }
     }
@@ -76,14 +77,15 @@ class Main extends Component{
                             props.routerState==1?(
                                 <div>
                                     <span><Link key="1" title="主页" to="/index">主页</Link></span>
-                                    <span><Link key="2" title="文章" to="/post">文章</Link></span>
-                                    <span><a key="3" onClick={this.exitBlog.bind(this)} >退出</a></span>
+                                    <span><Link key="2" title="个人信息" to="/info">个人信息</Link></span>
+                                    <span><Link key="3" title="文章" to="/post">文章</Link></span>
+                                    <span><a key="4" onClick={this.exitBlog.bind(this)} >退出</a></span>
                                 </div>
                             ):(
                                 <div>
                                     <span><Link key="1" title="主页" to="/index">主页</Link></span>
-                                    <span><Link key="4" title="登陆" to="/login">登陆</Link></span>
-                                    <span><Link key="5" title="注册" to="/register">注册</Link></span>
+                                    <span><Link key="2" title="登陆" to="/login">登陆</Link></span>
+                                    <span><Link key="3" title="注册" to="/register">注册</Link></span>
                                 </div>
                             )
                         }
