@@ -8,6 +8,20 @@ var CheckLogin = require('../models/common').CheckLogin;
 var CheckNotLogin = require('../models/common').CheckNotLogin;
 var Post = require('../models/post/post');
 var Result = require('../server/resultMap');
+//上传文件功能
+var multer = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb){
+        cb(null, './public/images')
+    },
+    filename: function (req, file, cb){
+        cb(null, file.originalname)
+    }
+});
+var upload = multer({
+    storage: storage
+});
+//上传文件配置END
 module.exports = function (app) {
   /* GET home page. */
   app.get('*', function (req, res) {
@@ -109,7 +123,7 @@ module.exports = function (app) {
   // })
   app.post('/post/savePost',function (req,res) {
     //TODO
-    let sessionUser = req.session.user,
+    var sessionUser = req.session.user,
         data = JSON.parse(req.body.d);
     /*tostring 是为了防止有0的输入*/
     console.log('==============')
@@ -128,22 +142,20 @@ module.exports = function (app) {
         // post  = new Post(sessionUser.name,req.body.title,req.body.post);
 
     // res.status(200).send(Result.set(true,'成功',{name:'caozheng'}))
-  })
+  });
   // 创建取出postData的协议
-  app.post('/obtainPost',(req,res)=>{
-    let sessionUser = req.session.user;
-    //判断是否有权限获取postData
-    // if(sessionUser){
+  app.post('/obtainPost',function(req,res){
+    var sessionUser = req.session.user;
       Post.get(null,function (err,postData){
         //返回数据
-        console.log('from router ')
-        console.log(postData)
+        console.log('from router ');
+        console.log(postData);
         err?res.send(Result.set(false,'失败',{msg:err})):res.send(Result.set(true,'成功',{postData:postData}));
       })
-    // }else{
-    //   // 这个地方要不要返回个403呢？先加上吧
-    //   res.state(403).send(Result.set(false,'失败',{msg:'没有权限'}))
-    // }
-
-  })
+  });
+    //上传协议
+    app.post('/upload',function (req,res) {
+        console.log('----------')
+        console.log(req.payload)
+    })
 };

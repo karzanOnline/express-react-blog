@@ -14,6 +14,8 @@ import indexPost from './indexPost';
 import publishPost from './publishPost';
 //控制权限
 import getAuthority from './authorityReduce';
+//上传文件
+import editInfo from './infoReduce';
 
 
 //let name = Object.assign({},Decompose(test),{title:'jjj'});
@@ -28,6 +30,7 @@ const indexReduces = combineReducers(
         loginReduce,
         publishPost,
         getAuthority,
+        editInfo,
         indexPost),{routing:routerReducer})
 )
 
