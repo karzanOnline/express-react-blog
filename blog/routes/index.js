@@ -8,6 +8,9 @@ var CheckLogin = require('../models/common').CheckLogin;
 var CheckNotLogin = require('../models/common').CheckNotLogin;
 var Post = require('../models/post/post');
 var Result = require('../server/resultMap');
+var DataBase = require('../models/database');
+var User = require('../models/user');
+var co = require('co');
 //上传文件功能
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -23,9 +26,40 @@ var upload = multer({
 });
 //上传文件配置END
 module.exports = function (app) {
+  //添加特定用户跳转文章路由
+    app.get('/u/:name',function(req,res){
+      console.log('使用user/name路由')
+      let postData,msg=true,user=req.session.user;
+        let re = User.get(user);
+        let promise;
+      re.then((result)=>{
+        debugger;
+        console.log(result)
+        if(result){
+          //查到有此用户
+          promise = new Promise(()=>{
+            Post.getAll(user,function(err,post_data){
+            debugger;
+            err?(msg=false):(postData = post_data)
+          })
+            
+          }) 
+        }else{
+          //查无此用户
+          msg = false
+        }
+      }).catch((err)=>{
+        console.log('errerrerr')
+        res.send(Result.set(false,'失败',{msg:err}));
+      })
+     
+      res.send(Result.set(true,'成功',{postData:postData,msg:msg}))
+    
+      
+    })
   /* GET home page. */
   app.get('*', function (req, res) {
-    Post.get(null, function (err, posts) {
+    Post.getAll(null, function (err, posts) {
       if (err) {
         posts = [];
       }
@@ -146,7 +180,7 @@ module.exports = function (app) {
   // 创建取出postData的协议
   app.post('/obtainPost',function(req,res){
     var sessionUser = req.session.user;
-      Post.get(null,function (err,postData){
+      Post.getAll(null,function (err,postData){
         //返回数据
         console.log('from router ');
         console.log(postData);
@@ -158,4 +192,6 @@ module.exports = function (app) {
         console.log('----------')
         console.log(req.payload)
     })
+    
+
 };

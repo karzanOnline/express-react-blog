@@ -50,7 +50,38 @@ Post.prototype.save = function (callback) {
 
 
 /*读取一篇文章*/
-Post.get = function (name,callback) {
+Post.getOne = function (obj,callback) {
+    new Promise((resolve)=>{
+        /*打开数据库*/
+        mongodb.open((err,db)=>{resolve(db)});
+    }).then(function (db) {
+        return db.collection('posts');
+    }).then(function (collection) {
+        let query = {};
+        if (obj.name){
+            query = Object.assign({},obj);
+        }
+        //连接数据库后之查找一片文章
+        try {
+            return collection.findOne(query)
+        } catch (error) {
+            throw (error)
+        }
+        //return collection.findOne(query)
+    }).then((docs)=>{
+        mongodb.close();
+        docs.forEach(function(doc){
+            doc.post = markdown.toHTML(doc.post);
+        });
+        return callback(null,docs)
+    }).catch(function (err) {
+        mongodb.close();
+        return callback(err)
+    });
+};
+
+/*读取全部文章*/
+Post.getAll = function (name,callback) {
     new Promise((resolve)=>{
         /*打开数据库*/
         mongodb.open((err,db)=>{resolve(db)});

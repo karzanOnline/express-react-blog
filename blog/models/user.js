@@ -25,5 +25,12 @@ User.prototype.save = function (callback) {
 //读取用户信息
 User.get = function(name, callback) {
     //打开数据库
-    new DataBase().findOne('users',{name:name},callback);
+    if(callback&&typeof callback=='function'){
+        new DataBase().findOne('users',{name:name},callback);
+    }else{
+        console.log('user.js 返回promise')
+        //console.log(new DataBase().findOne('users',{name:name}))
+        return new DataBase().findOne('users',{name:name});
+    }
+    
 };

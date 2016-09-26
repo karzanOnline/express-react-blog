@@ -20,9 +20,9 @@ DataBase.prototype = {
                 return db.collection(collections)
             })
             .then((collection)=>{
-                collection.insert(data,{safe:true},function (err,user) {
+                collection.insert(data,{safe:true},function (err,result) {
                     mongodb.close();
-                    callback(null,user.ops[0]);//插入成功 返回用戶存儲文檔
+                    callback(null,result.ops[0]);//插入成功 返回用戶存儲文檔
                 })
             })
             // .then((user)=>{
@@ -37,15 +37,23 @@ DataBase.prototype = {
     },
     findOne : function (collections,data,callback) {
         // console.log('findOne ******************')
-        this.connection
+        return this.connection
             .then((db)=> {
                 return db.collection(collections)
             })
             .then((collection)=> {
-                collection.findOne(data, function (err, user) {
+                if(callback&&typeof callback =='function'){
+                    //这里查看返回方式 -> 回调
+                    collection.findOne(data, function (err, result) {
                     mongodb.close();
-                    callback(null, user);
-                })
+                    callback(null, result);
+                    })
+                }else{
+                    //返回promise
+                    console.log('promise')
+                    return collection.findOne(data)
+                }
+                
             })
             .catch((err)=> {
                 mongodb.close();
