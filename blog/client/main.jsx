@@ -64,16 +64,16 @@ class Main extends Component{
                         {
                             props.routerState==1?(
                                 <div>
-                                    <span><Link key="1" title="主页" to="/index">主页</Link></span>
-                                    <span><Link key="2" title="个人信息" to="/info">个人信息</Link></span>
-                                    <span><Link key="3" title="文章" to="/post">文章</Link></span>
+                                    <span><Link activeClassName='active' key="1" title="主页" to="/index">主页</Link></span>
+                                    <span><Link activeClassName='active' key="2" title="个人信息" to="/info">个人信息</Link></span>
+                                    <span><Link activeClassName='active' key="3" title="文章" to="/post">文章</Link></span>
                                     <span><a key="4" onClick={this.exitBlog.bind(this)} >退出</a></span>
                                 </div>
                             ):(
                                 <div>
-                                    <span><Link key="1" title="主页" to="/index">主页</Link></span>
-                                    <span><Link key="2" title="登陆" to="/login">登陆</Link></span>
-                                    <span><Link key="3" title="注册" to="/register">注册</Link></span>
+                                    <span><Link activeClassName='active' key="1" title="主页" to="/index">主页</Link></span>
+                                    <span><Link activeClassName='active' key="2" title="登陆" to="/login">登陆</Link></span>
+                                    <span><Link activeClassName='active' key="3" title="注册" to="/register">注册</Link></span>
                                 </div>
                             )
                         }
@@ -85,7 +85,7 @@ class Main extends Component{
                       {/*  <Header {...props.location}/>*/}
                         <QueueAnim type={['right', 'left']} className="router-wrap">
                             <div className="article-inner">
-                                {React.cloneElement(props.children)}
+                                {React.cloneElement(props.children)} 
                             </div>
                         </QueueAnim>
                     </div>

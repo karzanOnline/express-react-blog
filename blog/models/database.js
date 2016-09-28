@@ -37,7 +37,7 @@ DataBase.prototype = {
     },
     findOne : function (collections,data,callback) {
         // console.log('findOne ******************')
-        return this.connection
+        this.connection
             .then((db)=> {
                 return db.collection(collections)
             })

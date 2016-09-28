@@ -31,7 +31,7 @@
  * [text发生focus事件的效果]
  */
 @mixin input-text-focus(){
-  border-color: #55abed;
+  border-color: #4d4d4d;
   box-shadow: inset 0 1px 3px rgba(0,0,0,.1),0 0 8px rgba(116,197,238,.6);
 }
 /*
@@ -71,9 +71,9 @@
 .button-primary{
   @include horizontal-button();
   color: #ffffff;
-  background-color: #31afee;
+  background-color: #4d4d4d;
   &:hover{
-    background-color: #19a6ec;
+    background-color: #4d4d4d;
   }
 }
 
@@ -92,7 +92,7 @@ address, cite, dfn, em, var { font-style:normal; }
 code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
 small{ font-size:12px; }
 ul, ol { list-style:none; }
-a {color: #00B7FF; text-decoration:none; }
+a {color: #4d4d4d; text-decoration:none; }
 a:hover { text-decoration:underline; }
 sup { vertical-align:text-top; }
 sub{ vertical-align:text-bottom; }

@@ -96,6 +96,7 @@ Post.getAll = function (name,callback) {
             .toArray()
     }).then((docs)=>{
         mongodb.close();
+    
         docs.forEach(function(doc){
             doc.post = markdown.toHTML(doc.post);
         });

@@ -14,11 +14,11 @@ nav{
     display:block;
     text-decoration:none;
     padding:.7em 1em;
-    color:#31afee;
+    color:#4d4d4d;
     text-align: center;
     &:hover{
-      background-color:#31afee;
-      color:#f9f9f9;
+      background-color:#eaeaea;
+      color:#4d4d4d;
       -webkit-transition:color .2s linear;
       text-decoration: none;
     }
@@ -36,4 +36,8 @@ nav{
   .article-inner{
     border-color : #d1d1d1;
   }
+}
+.active{
+  background-color: #4d4d4d;
+  color: #fff;
 }
