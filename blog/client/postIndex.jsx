@@ -49,6 +49,9 @@ class PostIndex extends Component{
                                 </p>
                                 <p dangerouslySetInnerHTML={{__html:item.get('post')}}></p>
                             </content>
+                            <div className="more-icon-wrap">
+                                <a className="more-icon" onClick={this.fGoMainAticle.bind(this,item.get('_id'))}>更多>></a>
+                            </div>
                             <footer className="article-info">
 
                             </footer>

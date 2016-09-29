@@ -30,16 +30,16 @@ module.exports = function (app) {
   
   /*配合单页面路由对所有get路由进行拦截.*/
   app.get('*', function (req, res) {
-    Post.getAll(null, function (err, posts) {
-      err&&(posts = []);
-      res.render('index', {
+    // Post.getAll(null, function (err, posts) {
+    //   err&&(posts = []);
+    // });
+    res.render('index', {
         title: '主页',
         user: req.session.user,
         success: req.flash('success').toString(),
         error: req.flash('error').toString(),
         env : 'development'
       });
-    });
   });
 
 
@@ -52,7 +52,7 @@ module.exports = function (app) {
       err&& res.send(Result.set(false,'失败',{msg:err}));
       if(data){
         //根据用户name查询所有文章
-        Post.getAll(user.name,function(err,post_data){
+        Post.getAll(user,function(err,post_data){
           err&& res.send(Result.set(false,'失败',{msg:err}));
           res.send(Result.set(true,'成功',{postData:post_data}))
         })
@@ -115,7 +115,7 @@ module.exports = function (app) {
   // 创建取出postData的协议
   app.post('/obtainPost',function(req,res){
     var sessionUser = req.session.user;
-      Post.getAll(null,function (err,postData){
+      Post.getAll(sessionUser,function (err,postData){
         //返回数据
         err?res.send(Result.set(false,'失败',{msg:err})):res.send(Result.set(true,'成功',{postData:postData}));
       })
@@ -131,15 +131,17 @@ module.exports = function (app) {
 
   //获取当前页面单个文章
   app.post('/article',function(req,res){
-    debugger;
+
+    let id = req.body.id
+
     if(!req.session.user){
       //检测是否登陆
       res.send(Result.set(false,'失败',{msg:'用户登陆!'}))
     }
     //获取当前页面文章
-    // Post.getOne({id:''},function(err,post){
-    //   err?res.send(Result.set(false,'失败',{msg:err})):res.send(Result.set(true,'成功',{post:post}));
-    // })
+    Post.getOne({_id:id},function(err,post){
+      err?res.send(Result.set(false,'失败',{msg:err})):res.send(Result.set(true,'成功',{post:post}));
+    })
   })
     
 

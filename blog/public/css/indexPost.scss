@@ -13,6 +13,7 @@
       margin-bottom: 20px;
       font-size: 26px;
       transition: color .3s;
+      cursor : pointer;
     }
   }
   .article-entry{
@@ -20,6 +21,22 @@
     line-height: 1.8em;
     padding-right: 7.6923%;
     padding-left: 7.6923%;
+    max-height: 560px;
+    overflow: hidden;
+    .info{
+      cursor: pointer;
+    }
+    h4{
+      margin-top: 20px;
+      font-weight : 700;
+      color: #574c4c;
+      padding-bottom: 5px;
+      border-bottom:1px solid #ddd;
+    }
+    p{
+      margin-top: 10px;
+      margin: 0 0 1.75em;
+    }
   }
   .article-info{
     padding-left: 20px;
@@ -27,6 +44,22 @@
     margin-bottom: 30px;
     min-height: 72px;
     border-top: 1px solid #ddd;
+  }
+  .more-icon-wrap{
+    margin: 20px 0;
+    padding-right: 7.6923%;
+    padding-left: 7.6923%;
+    .more-icon{
+      line-height: 16px;
+      font-size: 12px;
+      color: #ffffff;
+      background-color: #4d4d4d;
+      padding: 4px 8px 4px;
+      border-radius : 3px;
+      transition : background .3s;
+      cursor: pointer;
+    }
+
   }
 
 }

@@ -12,6 +12,8 @@ import Header from './header';
 /*left nav content*/
 import NavContent from './navContent';
 import '{public}/css/main.scss'
+//引用dialog组件
+import Dialog from './components/dialog';
 
 
 class Main extends Component{
@@ -90,7 +92,7 @@ class Main extends Component{
                         </QueueAnim>
                     </div>
                 </article>
-
+                <Dialog/>
             </div>
 
         )

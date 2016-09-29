@@ -2,6 +2,7 @@
  * Created by caozheng on 2016/9/5.
  */
 var mongodb = require('../db');
+var ObjectID = require('mongodb').ObjectID;
 //支持markdown语法
 var markdown = require('markdown').markdown;
 /*文章构造函数*/
@@ -58,22 +59,23 @@ Post.getOne = function (obj,callback) {
         return db.collection('posts');
     }).then(function (collection) {
         let query = {};
-        if (obj.name){
-            query = Object.assign({},obj);
-        }
+
+        obj._id&&(obj._id=ObjectID(obj._id))
+        // if (obj.name){
+        //     query = Object.assign({},obj);
+        // }
+
         //连接数据库后之查找一片文章
         try {
-            return collection.findOne(query)
+            return collection.findOne(obj)
         } catch (error) {
             throw (error)
         }
         //return collection.findOne(query)
-    }).then((docs)=>{
+    }).then((doc)=>{
         mongodb.close();
-        docs.forEach(function(doc){
-            doc.post = markdown.toHTML(doc.post);
-        });
-        return callback(null,docs)
+        doc.post = markdown.toHTML(doc.post);
+        return callback(null,doc)
     }).catch(function (err) {
         mongodb.close();
         return callback(err)
@@ -81,7 +83,7 @@ Post.getOne = function (obj,callback) {
 };
 
 /*读取全部文章*/
-Post.getAll = function (name,callback) {
+Post.getAll = function (sessionUser,callback) {
     new Promise((resolve)=>{
         /*打开数据库*/
         mongodb.open((err,db)=>{resolve(db)});
@@ -89,14 +91,15 @@ Post.getAll = function (name,callback) {
         return db.collection('posts');
     }).then(function (collection) {
         let query = {};
-        if (name){
-            query.name = name
-        }
+        // if (name){
+        //     query.name = name
+        // }
+        sessionUser&&(query.name=sessionUser.name)
+      
         return collection.find(query).sort({time:-1})
             .toArray()
     }).then((docs)=>{
         mongodb.close();
-    
         docs.forEach(function(doc){
             doc.post = markdown.toHTML(doc.post);
         });
