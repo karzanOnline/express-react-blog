@@ -1,0 +1,17 @@
+{
+    "extends": "airbnb",
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "indent": ["error", 4],
+        "linebreak-style": 0
+    },
+    "globals":{
+        "React":true,
+        "Immutable" : true
+    },
+    "env": {
+        "jquery": true
+    }
+}

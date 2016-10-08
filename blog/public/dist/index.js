@@ -13893,7 +13893,8 @@ webpackJsonp([0,1],[
 	                            placeholder: '请输入用户名',
 	                            ref: 'user_name',
 	                            autoComplete: 'off',
-	                            name: 'name' })
+	                            name: 'name'
+	                        })
 	                    ),
 	                    React.createElement(
 	                        'div',
@@ -13907,7 +13908,8 @@ webpackJsonp([0,1],[
 	                            placeholder: '请输入密码',
 	                            ref: 'user_pass',
 	                            autoComplete: 'off',
-	                            name: 'password' })
+	                            name: 'password'
+	                        })
 	                    ),
 	                    React.createElement(
 	                        'div',
@@ -13921,7 +13923,8 @@ webpackJsonp([0,1],[
 	                            placeholder: '请输入密码',
 	                            ref: 'user_pass_re',
 	                            autoComplete: 'off',
-	                            name: 'password' })
+	                            name: 'password'
+	                        })
 	                    ),
 	                    React.createElement(
 	                        'div',

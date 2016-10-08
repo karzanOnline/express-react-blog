@@ -1,0 +1,1 @@
+web:cd blog node app.js
