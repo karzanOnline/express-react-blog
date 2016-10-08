@@ -3,79 +3,81 @@
  */
 import QueueAnim from 'rc-queue-anim';
 import { connect } from 'react-redux';
-/*这个页面所用到的事件集合*/
-//TODO 这里需要修改
-import {submitLogin,submitStart} from './redux/actions/helloAction';
-import {getAuthority} from './redux/actions/authority';
-import {browserHistory} from 'react-router';
+/* 这个页面所用到的事件集合*/
+// TODO 这里需要修改
+import { submitLogin , submitStart } from './redux/actions/helloAction';
+import { getAuthority } from './redux/actions/authority';
+import { browserHistory } from 'react-router';
 import '{public}/css/login.scss';
 
 
 // import {Component} from 'react';
-class Login extends React.Component{
-    constructor(props){
-        super(props)
-        
+class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { name: '123' };
     }
 
 
-    componentDidMount (){
+    componentDidMount() {
 
     }
 
-    submitLogin(event){
+    submitLogin(event) {
         event.preventDefault();
         // browserHistory.push('/index')
-        let {dispatch} = this.props,
+        let { dispatch } = this.props,
             obj = {
-                d:JSON.stringify({
-                    name : this.refs.user_name.value,
-                    password : this.refs.user_pass.value
-                })
+                d: JSON.stringify({
+                    name: this.refs.user_name.value,
+                    password: this.refs.user_pass.value,
+                }),
             };
-        $.post('/login',obj,(data)=>{
-            if (data.success){
+        $.post('/login', obj, (data) => {
+            if (data.success) {
                 dispatch(getAuthority(1));
-                browserHistory.push('/index')
-            }else{
-                alert(data.description)
+                browserHistory.push('/index');
+            } else {
+                alert(data.description);
             }
-        },'json');
+        }, 'json');
         // dispatch(submitLogin(obj));
     }
 
-    componentWillReceiveProps (props){
+    componentWillReceiveProps(props) {
 
     }
 
 
-    render (){
+    render() {
         console.log(this.props);
-        return(
+        return (
             <QueueAnim interval={100} duration={1500}>
             <div key="1" className="form-style">
                 <div className="item-input">
                     <span>用户名：</span>
                     <input type="text"
-                           placeholder="请输入用户名"
-                           ref="user_name"
-                           autoComplete="new-password"
-                           name="name"/>
+                      placeholder="请输入用户名"
+                      ref="user_name"
+                      autoComplete="new-password"
+                      name="name"
+                    />
                 </div>
                 <div className="item-input">
                     <span className="item-pass">密码：</span>
                     <input type="password"
-                           placeholder="请输入密码"
-                           ref="user_pass"
-                           autoComplete="new-password"
-                           name="password"/>
+                      placeholder="请输入密码"
+                      ref="user_pass"
+                      autoComplete="new-password"
+                      name="password"
+                    />
                 </div>
                 <div className="item-input">
                     <button onClick={this.submitLogin.bind(this)} className="submit-button">提交</button>
                 </div>
             </div>
            </QueueAnim>
-        )
+        );
     }
 
 }
@@ -94,4 +96,4 @@ class Login extends React.Component{
 //
 // }
 
-export default connect()(Login)
+export default connect()(Login);
