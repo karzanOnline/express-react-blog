@@ -61,6 +61,8 @@ const indexReduces = combineReducers(
 
 
 
+
+
 // 这里出现一个问题如果都是将reduce全部加载进来
 // 会对性能有很大的影响。
 // 后面版本采用动态加载reduce

@@ -8,8 +8,6 @@ var crypto = require('crypto'),
     Result = require('../../server/resultMap');
 function Login(req,res) {
     //生成密码的 md5 值
-
-    console.log("=================")
     var md5 = crypto.createHash('md5'),
         password = md5.update(JSON.parse(req.body.d).password).digest('hex');
     //检查用户是否存在
@@ -21,7 +19,6 @@ function Login(req,res) {
             //return res.redirect('/login');//用户不存在则跳转到登录页
         }
         console.log(user);
-        console.log("------------------------------");
         //检查密码是否一致
         if (user.password != password) {
             req.flash('error', '密码错误!');

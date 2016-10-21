@@ -38,6 +38,7 @@ class Main extends Component{
         // Pubsub.subscribe('author',function () {
         //
         // })
+
     }
 
     exitBlog (){
@@ -68,7 +69,7 @@ class Main extends Component{
                                 <div>
                                     <span><Link activeClassName='active' key="1" title="主页" to="/index">主页</Link></span>
                                     <span><Link activeClassName='active' key="2" title="个人信息" to="/info">个人信息</Link></span>
-                                    <span><Link activeClassName='active' key="3" title="文章" to="/post">文章</Link></span>
+                                    <span><Link activeClassName='active' key="3" title="文章" to="/post">发布文章</Link></span>
                                     <span><a key="4" onClick={this.exitBlog.bind(this)} >退出</a></span>
                                 </div>
                             ):(

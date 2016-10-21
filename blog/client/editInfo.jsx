@@ -7,10 +7,19 @@ import Upload from 'rc-upload';
 class EditInfo extends React.Component {
     constructor(props) {
         super(props);
+        var test;
         this.uploaderProps = {
             action: '/upload',
+            headers : {
+                "Content-Type" : "application/x-www-form-urlencoded"
+            },
+            data : function (file) {
+                console.log(file.name);
+                return {}
+            },
             beforeUpload(file) {
                 console.log('beforeUpload', file.name);
+                test = file.name
             },
             onStart: (file) => {
                 console.log('onStart', file.name);

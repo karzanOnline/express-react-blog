@@ -1,7 +1,10 @@
 /**
  * Created by caozheng on 2016/9/3.
  */
-var mongodb = require('./db');
+//var mongodb = require('./db');
+//var mongodb = require('mongodb').Db;
+//var settings = require('./../settings');
+
 var DataBase  = require('./database');
 function User(user) {
     this.name = user.name;
@@ -28,7 +31,7 @@ User.get = function(name, callback) {
     if(callback&&typeof callback=='function'){
         new DataBase().findOne('users',{name:name},callback);
     }else{
-        console.log('user.js 返回promise')
+        console.log('user.js 返回promise');
         //console.log(new DataBase().findOne('users',{name:name}))
         return new DataBase().findOne('users',{name:name});
     }

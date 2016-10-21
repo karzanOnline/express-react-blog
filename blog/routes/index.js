@@ -27,6 +27,13 @@ var upload = multer({
 });
 //上传文件配置END
 module.exports = function (app) {
+  //总监让写的月度总结
+  app.get('/karzan/share', function (req, res) {
+    //月度总结渲染
+    res.render('share', {
+      test : 'test'
+    })
+  });
   
   /*配合单页面路由对所有get路由进行拦截.*/
   app.get('*', function (req, res) {
@@ -45,7 +52,7 @@ module.exports = function (app) {
 
   //添加特定用户跳转文章路由
   app.post('/u/:name',function(req,res){
-    console.log('使用user/name路由')
+    console.log('使用user/name路由');
     let postData,user=req.session.user;
     //查询是否有此用户
     User.get(user.name,function(err,data){
@@ -60,7 +67,7 @@ module.exports = function (app) {
         res.send(Result.set(true,'成功',{msg:'用户未登录！'}))
       }
     })
-  })
+  });
 
 
   //跳转文章详情路由
@@ -69,16 +76,36 @@ module.exports = function (app) {
       name : req.params.name,
       day : req.params.day,
       title : req.params.title
-    }
+    };
     Post.findOne(obj,function(err,data){
       err? res.send(Result.set(false,'失败',{msg:err})):res.send(Result.set(true,'成功',{postData:data}))
     })
-  })
+  });
 
 
   /*注册get*/
   app.post('/reg', function (req, res) {
     Reg(req,res);
+  });
+
+  /*刷新路由*/
+  app.post('/index', function (req, res) {
+    //获取个人信息
+    var session = req.session;
+    if (session.user){
+      //检测出用户在登陆状态
+      var data = {
+        user : session.user,
+        info : session.info||'',
+        head : session.head||''
+      };
+
+      res.send(Result.set(true, '获取成功！', {data : data}))
+    }else{
+
+      res.send(Result.set(false, '未登录！', {}))
+    }
+
   });
 
 
@@ -93,7 +120,7 @@ module.exports = function (app) {
   app.post('/exit',function (req,res) {
     req.session.user = null;
     req.flash('success', '登出成功!');
-    res.send(Result.set(true,'登出成功！',{}));
+    res.send(Result.set(true,'退出成功！',{}));
   });
 
 
@@ -123,16 +150,16 @@ module.exports = function (app) {
 
 
   //上传协议
-  app.post('/upload',function (req,res) {
-      console.log('----------')
-      console.log(req.payload)
-  })
+  app.post('/upload',  function (req,res) {
+
+    res.send('123')
+  });
 
 
   //获取当前页面单个文章
   app.post('/article',function(req,res){
 
-    let id = req.body.id
+    let id = req.body.id;
 
     if(!req.session.user){
       //检测是否登陆

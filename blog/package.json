@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "server": "cross-env NODE_ENV=dev&&supervisor --ingnore client app",
+    "server": "cross-env NODE_ENV=production&&node app",
     "static": "webpack-dev-server --devtool eval --inline --progress --colors --hot --port 9090",
     "dev": "node hot.js"
   },
@@ -12,7 +12,6 @@
     "babel-loader": "latest",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
-    "babel-preset-stage-0": "latest",
     "body-parser": "~1.15.1",
     "bundle-loader": "^0.5.4",
     "co": "latest",
@@ -64,7 +63,7 @@
     "babel-eslint": "^7.0.0",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react-hmre": "^1.1.1",
-    "babel-preset-stage-2": "^6.13.0",
+    "babel-preset-stage-3": "latest",
     "eslint": "^3.6.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^2.0.0",
