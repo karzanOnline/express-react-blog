@@ -2,11 +2,14 @@
   "name": "blog",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "6.9.1"
+  },
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "npm install && cross-env NODE_ENV=production && node app",
     "server": "cross-env NODE_ENV=production&&node app",
     "static": "webpack-dev-server --devtool eval --inline --progress --colors --hot --port 9090",
-    "dev": "node hot.js"
+    "build": "webpack -p  --config webpack.production.config.js --progress"
   },
   "dependencies": {
     "babel-loader": "latest",
@@ -26,12 +29,12 @@
     "ejs": "~2.4.1",
     "express": "~4.13.4",
     "express-session": "latest",
+    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "~0.8.5",
     "immutable": "latest",
     "jquery": "latest",
     "json-loader": "^0.5.4",
     "jsx-loader": "~0.13.2",
-    "markdown": "0.5.0",
     "mongodb": "latest",
     "morgan": "~1.7.0",
     "multer": "latest",
@@ -69,6 +72,8 @@
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
+    "formidable": "^1.0.17",
+    "markdown": "^0.5.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "redux-devtools": "^3.3.1"

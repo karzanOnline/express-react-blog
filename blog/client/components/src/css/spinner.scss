@@ -1,0 +1,55 @@
+@import './function';
+
+.rui-spinner {
+  position:relative;
+
+  &-input {
+    position:relative;
+    width: 52px;
+    text-align:center;
+    outline: none;
+    z-index:1;
+  }
+
+  &-button {
+    padding: 0 5px;
+    border: 0;
+  }
+
+  &-slider {
+    width: 100%;
+    height: 11px;
+
+    &-back {
+      margin:4px 90px 4px 0;
+      height:3px;
+      background:$border;
+      border-radius:2px 2px;
+      position:relative;
+    }
+
+    &-fore {
+      background:$primary;
+      height:3px;
+    }
+
+    &-point {
+      width:11px;
+      height:11px;
+      border:1px solid $primary;
+      background:$white;
+      position:absolute;
+      top:-4px;
+      left:0px;
+      padding:0;
+      margin-left:-4px;
+      display:inline-block;
+    }
+
+    &-text {
+      float:right;
+      width:80px;
+      line-height:4px;
+    }
+  }
+}

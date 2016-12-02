@@ -65,21 +65,22 @@ Post.getOne = function (obj,callback) {
     }).then(function (collection) {
         var query = {};
 
-        obj._id&&(obj._id=ObjectID(obj._id))
+        obj._id&&(obj._id=ObjectID(obj._id));
         // if (obj.name){
         //     query = Object.assign({},obj);
         // }
 
         //连接数据库后之查找一片文章
         try {
-            return collection.findOne(obj)
+            return collection.findOne(obj._id)
         } catch (error) {
             throw (error)
         }
         //return collection.findOne(query)
     }).then((doc)=>{
         dbContent.close();
-        doc.post = markdown.toHTML(doc.post);
+        //判断返回的类型
+        !obj.markdown && (doc.post = markdown.toHTML(doc.post));
         return callback(null,doc)
     }).catch(function (err) {
         dbContent.close();
@@ -89,6 +90,7 @@ Post.getOne = function (obj,callback) {
 
 /*读取全部文章*/
 Post.getAll = function (sessionUser,callback) {
+
     var dbContent = null;
     new Promise((resolve)=>{
         /*打开数据库*/

@@ -31,4 +31,174 @@
      description : <span class="hljs-string">'错误信息'</span>
      errCode: <span class="hljs-string">'J000000'</span> <span class="hljs-comment">//成功</span>
 }</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更重要的是前端需要明确的了解每一个协议对应每一个字段的含义！如果后端返回数据量很大的话基本上一半的bug是对字段的理解错误。一个明确的规范对开发、测试和沟通都有很好的效果，磨刀不误砍柴工。</p><h3>调试</h3><hr/><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后端开发时期的调试应该是在本机完成的，不应该依赖于通过前端开启服务在打断点来调试，对前端的开发效率也有着不小的影响。</p><h3>关于产品</h3><hr/><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先一个好的产品必须熟练的掌握它的开发工具如:Axure RP。一个好的原型可以提高开发人员的开发效率，相信我真的可以提高很多！前端更注重的是页面的展示即页面的效果，设计是怎样的，一个按钮的功能是怎样的，链接点击后跳转的页面是怎么样的...很多细节的设计也是需要原型图来告知的。</p><ul><li><p>可以减少前后端和产品的沟通成本</p></li><li><p>可以大大提升开发人员的开发效率</p></li><li><p>对产品经理本身也是一个提升。</p></li><li><p>不能依赖于word的文档，word文档更大的用处是用来对大量数据的说明，主次关系需要理清。</p></li><li><p style="background-color: transparent;">产品经理要有长远的设计目标、思想(开发<span class="diff"></span>人员可以写更多的兼容代码，避免二次开发)</p></li></ul><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上是我近两个月对公司内部开发方式和业务的不成熟的总结，有什么不对的地方还希望指出。更推荐大家去自主的学习。要有极客精神，成为大牛的必经之路是需要对自己所做的东西、开发环境、性能有极致的追求。</p></div>
+
+<div id="testID"></div>
+<script>
+        (function () {
+
+//            function  CreateXmlHttp() {
+//                console.log('constructor');
+//                if(window.XMLHttpRequest){
+//                    //是否可以使用
+//                    this.xmlHttp = new XMLHttpRequest();
+//                }
+//
+//                if(window.ActiveXObject){
+//                    var _this = this;
+//                    try {
+//                        _this.xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+//                    }catch (e){
+//                        try {
+//                            _this.xmlhttp = new ActiveXObject("msxml2.XMLHTTP");
+//                        }catch (err){
+//
+//                        }
+//                    }
+//                }
+//            }
+//            function MyXml(url) {
+//
+//                CreateXmlHttp.call(this);
+//
+//                if (!this.xmlHttp) {
+//                    alert("创建xmlhttp对象异常！");
+//                    return false;
+//                }
+//
+//                this.xmlHttp.open("POST", url, false);
+//
+//                this.xmlHttp.onreadystatechange = function () {
+//                    if (this.xmlHttp.readyState == 4) {
+//                        document.querySelector("#testID").innerHTML = "数据正在加载...";
+//                        if (this.xmlHttp.status == 200) {
+//                            document.write(this.xmlHttp.responseText);
+//                        }
+//                    }
+//                }.bind(this)
+//                this.xmlHttp.send();
+//            }
+//
+//            MyXml.prototype = Object.create(CreateXmlHttp.prototype);
+//
+//            new MyXml('/test/render');
+
+
+
+
+            var KLocation = function ( url ) {
+
+                return new KLocation.fn.init( url );
+            };
+
+            KLocation.fn = KLocation.prototype = {
+
+                constructor : KLocation,
+
+                checkErr : function () {
+                    if(!this.url){
+                        throw ('error for param from getParam');
+                    }
+                    return true
+                },
+
+                protocolIndex : function (boolean) {
+
+                    var re = new RegExp("[\:]","ig");
+                    var urlTest = re.exec(this.url);
+
+                    if(boolean){
+                        //只是检测是否有协议类型
+                        if(!urlTest){
+                            return 0
+                        }
+                    }
+                    if(!urlTest){
+                        throw ('Protocol is not find, check your code')
+                    }
+                    var index = urlTest.index;
+                    return index+1
+                }
+
+            };
+            init = KLocation.fn.init = function () {
+
+                if(!arguments.length){
+                    throw ('error for param from KL constructor')
+                }
+
+                this.url = arguments[0];
+                this.protocol = this.getProtocol();
+                this.host = this.getHost();
+
+            }
+            init.prototype = KLocation.fn;
+
+            //返回json
+            //url后面的参数json化
+            init.prototype.getParam = function () {
+                KLocation.fn.checkErr.call(this)
+
+                var re = new RegExp("([?=&])([A-Za-z0-9]*)","ig"),
+                    rel = new RegExp("[\"\']","ig");
+                    arr = [],
+                    result = {},
+                    url = this.url.replace(rel,""); //去除" ' 的影响
+
+                //to array
+                while(value=re.exec(url)){
+
+                    if(value[2]==''){
+                        continue;
+                    }
+
+                    arr.push(value[2]);
+                }
+
+                //to json
+                for (var i=0;i<arr.length;i++){
+                    if(i%2==0){
+                        //even property
+                        result[arr[i]] = ''
+
+                    }else{
+                        //odd value
+                        result[arr[i-1]] = arr[i]
+                    }
+                }
+
+                return result
+            }
+
+            //返回string
+            //protocol
+            init.prototype.getProtocol = function () {
+                //日常判断url是否存在
+                KLocation.fn.checkErr.call(this);
+
+                return this.url.slice(0, KLocation.fn.protocolIndex.call(this,false))
+            }
+
+            init.prototype.getHost = function () {
+
+                KLocation.fn.checkErr.call(this);
+                var re = new RegExp("(\.)","ig")
+                var index = KLocation.fn.protocolIndex.call(this,true);
+                var i = 0;
+                re.exec(this.url);
+                debugger;
+                var last =  re.exec(this.url).index;
+
+                //检查如果http:// 写成http:/ 时只需将/全局匹配掉
+                var host =  this.url.slice(index, last).replace(/[/]/ig,'');
+                return host
+            }
+
+
+            console.log(KLocation('http://www.baidu.com?"a"="1"&b=2'));
+
+//            console.log(KLocation.fn)
+
+        })()
+    </script>
+</body>
 </html>

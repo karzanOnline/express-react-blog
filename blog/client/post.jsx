@@ -8,6 +8,8 @@ import QueueAnim from 'rc-queue-anim';
 import { connect } from 'react-redux';
 import { publishPost, postReset } from './redux/actions/publishPost';
 import { browserHistory } from 'react-router';
+import Alert from './components/src/js/managers/DialogManager';
+
 class Post extends Component {
     constructor(props) {
         super(props);

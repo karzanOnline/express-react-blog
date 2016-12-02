@@ -3,27 +3,61 @@
  */
 import QueueAnim from 'rc-queue-anim';
 import { Component } from 'react';
+import {browserHistory } from 'react-router';
 export default class Login extends Component {
     constructor(props) {
         super(props);
+        window._this = this;
+
+    }
+
+
+    fKedown (e){
+
+        (e.keyCode==13) && (window._this.submitLogin())
     }
 
     componentDidMount() {
 
+        document.addEventListener('keydown', this.fKedown);
+    }
+
+    componentWillUnmount(){
+
+        document.removeEventListener('keydown', this.fKedown)
     }
 
     submitLogin() {
         const _this = this;
+        var name = _this.refs.user_name.value,
+            password = _this.refs.user_pass.value,
+            passwordRe = _this.refs.user_pass_re.value;
+        if(!name){
+            alert('请输入用户名！');
+            return;
+        }
+        if(!password){
+            alert('请输入密码！');
+            return
+        }
+        if(!passwordRe){
+            alert('请输入确认密码！');
+            return;
+        }
+        if(password!==passwordRe){
+            alert('两次密码输入不一致,请确认！');
+            return;
+        }
         const obj = {
             d: JSON.stringify({
-                name: _this.refs.user_name.value,
-                password: _this.refs.user_pass.value,
-                passwordRe: _this.refs.user_pass_re.value,
+                name: name,
+                password: password,
+                passwordRe: passwordRe,
             }),
         };
         $.post('/reg', obj, (data) => {
             if (data.success) {
-
+                browserHistory.push('/login');
             } else {
                 alert(data.description);
             }

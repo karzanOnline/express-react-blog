@@ -9,6 +9,42 @@ let node_modules = path.resolve(__dirname, 'node_modules');
 let publicPath = 'http://localhost:9090/';
 // var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 const ROOT_PATH = path.resolve(__dirname);
+//暂时不用
+// var fs = require('fs'),
+//     util = require('util'),
+//     fsPath = 'client';
+// var pathArr = [];
+// function explorer(path){
+//
+//     fs.readdir(path, function(err, files){
+//         //err 为错误 , files 文件名列表包含文件夹与文件
+//         if(err){
+//             console.log('error:\n' + err);
+//             return;
+//         }
+//
+//         files.forEach(function(file){
+//
+//             fs.stat(path + '/' + file, function(err, stat){
+//                 if(err){console.log(err); return;}
+//                 if(stat.isDirectory()){
+//                     // 如果是文件夹遍历
+//                     // explorer(path + '/' + file);
+//                 }else{
+//                     // 读出所有的文件
+//                     console.log(path + '\\' + file);
+//                     pathArr.push(path + '\\' + file)
+//                 }
+//             });
+//
+//         });
+//
+//     });
+// }
+//
+// explorer(fsPath);
+
+
 
 let devConfig = {
     entry: require(path.resolve(__dirname, 'entry.config')),
@@ -23,10 +59,11 @@ let devConfig = {
             'jquery': 'jQuery',
             'react': 'React',
             'react-dom': 'ReactDOM',
-            'zepto': 'Zepto',
-            immutable: 'Immutable',
+            'immutable': 'Immutable',
+             moment: true
         },
         require('webpack-require-http'),
+
     ],
     ProvidePlugin: {
         React: 'react',
@@ -69,7 +106,6 @@ let devConfig = {
             minChunks: 2,
             chunks: entries_key,
         }),
-        // new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
     ],
     resolve: {
         // 查找module的话从这里开始查找

@@ -1,0 +1,68 @@
+@import './function';
+
+.rui-dialog {
+  position:fixed;
+  top:-400%;
+  left:400%;
+  background:$white;
+  box-sizing: border-box;
+  z-index:$zindexModal+1;
+  border:1px solid $border;
+  opacity:0;
+  -webkit-transform: translate(0, -40px);
+  transform: translate(0, -40px);
+  transition : transform .3s ease-out,opacity .3s ease-out;
+
+  &-active {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    opacity:1;
+  }
+
+  &-inactive {
+    opacity:0;
+    -webkit-transform: translate(0, -40px);
+    transform: translate(0, -40px);
+  }
+
+  &-header {
+    clear:both;
+    height:52px;
+    border-bottom:1px solid $border;
+    padding:0 20px;
+  }
+
+  &-close {
+    position:absolute;
+    right:14px;
+    top:14px;
+    width:18px;
+    height:18px;
+    padding:0;
+    border:0;
+  }
+
+  &-title {
+    float:left;
+    font-size:14px;
+    line-height:50px;
+  }
+
+  &-body {
+    min-width:340px;
+    padding:20px 20px 40px;
+    line-height:24px;
+  }
+
+  &-footer {
+    text-align:right;
+    padding:0 20px 20px;
+
+    .rui-button:first-child {
+      margin-right:10px;
+    }
+    .rui-button:last-child {
+      margin-right:0px;
+    }
+  }
+}

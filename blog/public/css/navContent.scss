@@ -15,7 +15,7 @@
         height: 128px;
         margin: 0 auto;
         overflow: hidden;
-        background-color: #88acdb;
+        background-color: #ffffff;
         -webkit-transition: all .2s ease-in;
         -webkit-box-orient: horizontal;
         -webkit-box-pack:center;
@@ -57,7 +57,7 @@
   }
 
 }
-.overlay{
+.nav-overlay{
   position: absolute;
   margin-top: -112px;
   width: 100%;

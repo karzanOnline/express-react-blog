@@ -1,0 +1,225 @@
+@import './function';
+
+.rui-datepicker {
+  position:relative;
+  width:210px;
+  font-size:12px;
+
+  &-row {
+    background:#fff;
+  }
+
+  &.range {
+    width:190px;
+
+    >.rui-input {
+      width:190px;
+    }
+  }
+
+  >.rui-input {
+    width:210px;
+    &.focused {
+      border:1px solid $primary;
+      box-shadow:none;
+    }
+  }
+
+  &-input-icon {
+    background:#fff url(../img/icon/calendar.png) no-repeat;
+    background-position:right 9px;
+  }
+
+  @at-root .range &-calendar {
+    float:left;
+  }
+
+  @at-root .range &-popup {
+    width:462px;
+    background-color:#fff;
+
+    .range-container {
+      margin-bottom:10px;
+      padding-left:10px;
+      clear:both;
+      height:38px;
+      input {
+        width:86px;
+        margin-right:20px;
+      }
+
+      .right .rui-button:last-child {
+        margin-left:10px;
+      }
+    }
+  }
+
+  &-calendar:first-child {
+    margin-left:0;
+  }
+
+  &-calendar {
+    width:230px;
+    height:230px;
+    background:#fff;
+
+    &-title {
+      border-top:1px solid $border;
+      border-bottom:1px solid $border;
+      margin-top:4px;
+      text-align:center;
+      line-height:28px;
+      font-size:14px;
+      color:$text2;
+    }
+
+    &-left {
+      background:url(../img/icon/arrow_pagination_usable.png) no-repeat;
+      display:block;
+      width:18px;
+      height:18px;
+      float:left;
+      margin-top:5px;
+      margin-left:5px;
+    }
+
+    &-right {
+      background:url(../img/icon/arrow_pagination_usable.png) no-repeat;
+      transform:rotate(180deg);
+      display:block;
+      width:18px;
+      height:18px;
+      float:right;
+      margin-top:5px;
+      margin-right:6px;
+    }
+
+    &-table {
+      width:205px;
+      line-height:24px;
+      margin: 10px;
+      thead {
+        color:$text2;
+
+        th {
+          font-weight:normal;
+          width:24px;
+          height:24px;
+        }
+      }
+
+      tbody {
+        tr {
+          text-align: center;
+        }
+
+        td {
+          cursor:pointer;
+          //@include prefixer('border-radius', 6px 6px);
+          width:24px;
+
+          >span {
+            width:100%;
+            display:inline-block;
+            border:1px solid $white;
+            box-sizing: border-box;
+          }
+
+          &>span:hover,&>span.ranged:hover {
+            //border-radius:6px 6px;
+            border:1px solid $primary;
+            color:$text2;
+          }
+
+          &.ranged {
+            background:#edf5fe;
+            color:#666;
+          }
+
+          &.selected {
+            background:$primary;
+            color:#fff;
+          }
+
+          &.disabled,&.disabled:hover {
+            color:#ccc;
+            background:#fff;
+          }
+        }
+      }
+    }
+  }
+
+  &-popup {
+    display:none;
+    background:$white;
+    border:1px solid $border;
+    border-radius:6px 6px;
+    padding:35px 0 0 0;
+    position:absolute;
+    top:-4px;
+    left:-10px;
+    z-index:$zindexModal;
+    overflow:hidden;
+
+    &-arrow {
+      position:absolute;
+      top:-8px;
+      left:13px;
+      width:14px;
+      height:8px;
+      background:url(../img/datepicker-arrow.png) no-repeat;
+    }
+  }
+
+  &.active {
+    >.rui-input {
+      position:relative;
+      z-index:1101;
+    }
+    >.rui-icon-calendar {
+      z-index:1101;
+    }
+    .rui-datepicker-popup {
+      display:block;
+    }
+  }
+
+  .rui-datepicker-time {
+    background:#fff;
+
+    .rui-timepicker {
+      text-align:center;
+      margin:0 auto;
+    }
+
+    &-cancel {
+      margin-left:17px;
+    }
+
+    &-submit {
+      margin-left:10px;
+    }
+  }
+
+  &.upside {
+    .rui-datepicker-popup {
+      top:auto;
+      bottom:2px;
+      padding:0 0 45px 0;
+
+      &-arrow {
+        transform:rotate(180deg);
+        top:auto;
+        bottom:-8px;
+      }
+    }
+    .rui-datepicker-calendar {
+      border-bottom:1px solid $border;
+      &-title {
+        margin-top: 0;
+        border-top: 0;
+      }
+    }
+  }
+}

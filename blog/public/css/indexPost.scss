@@ -37,6 +37,15 @@
       margin-top: 10px;
       margin: 0 0 1.75em;
     }
+    blockquote{
+      border-left: 2px solid #4d4d4d;
+      background-color: #f6f6f6;
+      color: #555;
+      font-size: 1em;
+      p{
+        padding: 10.5px 21px;
+      }
+    }
   }
   .article-info{
     padding-left: 20px;
@@ -44,6 +53,10 @@
     margin-bottom: 30px;
     min-height: 72px;
     border-top: 1px solid #ddd;
+    text-align: right;
+    button{
+      margin: 10px 20px;
+    }
   }
   .more-icon-wrap{
     margin: 20px 0;
@@ -59,7 +72,27 @@
       transition : background .3s;
       cursor: pointer;
     }
-
+  }
+  .main-article-entry{
+    max-height: inherit;
+  }
+  pre{
+    font:12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    padding: 16px;
+    margin-bottom: 20px;
+    overflow: auto;
+    font-size: 80%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border-radius: 3px;
+  }
+  ul,li{
+    list-style: inherit;
+    margin: .3em 26px;
+  }
+  hr{
+    margin: 1.5em auto;
+    border-top: 2px dotted #eee;
   }
 
 }

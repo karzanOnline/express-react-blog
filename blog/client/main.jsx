@@ -5,15 +5,15 @@ import {Component} from 'react';
 import QueueAnim from 'rc-queue-anim';
 import {Link} from 'react-router';
 import { connect } from 'react-redux';
-import Pubsub from './pubsub';
 import {browserHistory } from 'react-router';
 import {getAuthority} from './redux/actions/authority';
-import Header from './header';
 /*left nav content*/
 import NavContent from './navContent';
 import '{public}/css/main.scss'
 //引用dialog组件
-import Dialog from './components/dialog';
+import Alert from './components/src/js/managers/DialogManager';
+
+import { getMainInfo, getStateChange } from './redux/actions/navContent';
 
 
 class Main extends Component{
@@ -28,24 +28,24 @@ class Main extends Component{
     *
     * */
     componentDidMount (){
-        // pageAuthor = pageAuthor.value.split(',').map((item,index)=>{
-        //     return LINK_PAGE_DATA[item]
-        // });
-        // console.log(pageAuthor);
-        // this.setState({
-        //     linkData : pageAuthor||''
-        // });
-        // Pubsub.subscribe('author',function () {
-        //
-        // })
-
+        //获取用户信息
+        let { dispatch } = this.props;
+        dispatch(getMainInfo());
     }
 
     exitBlog (){
         let {dispatch} = this.props.route;
         $.post('/exit',{},(data)=>{
             if (data.success){
+                Alert.alert({
+                    title:'',
+                    message:'退出成功！'
+                });
+                setTimeout(function () {
+                    Alert.clearAll();
+                },2000);
                 dispatch(getAuthority(2));
+                dispatch(getStateChange());
                 browserHistory.push('/index')
             }else{
                 alert(data.description)
@@ -65,12 +65,13 @@ class Main extends Component{
                     <QueueAnim>
                         <div style={{margin:'40px 0'}}>
                         {
-                            props.routerState==1?(
+                            props.authorState?(
                                 <div>
-                                    <span><Link activeClassName='active' key="1" title="主页" to="/index">主页</Link></span>
-                                    <span><Link activeClassName='active' key="2" title="个人信息" to="/info">个人信息</Link></span>
-                                    <span><Link activeClassName='active' key="3" title="文章" to="/post">发布文章</Link></span>
-                                    <span><a key="4" onClick={this.exitBlog.bind(this)} >退出</a></span>
+                                    <span key="1"><Link activeClassName='active' key="1" title="主页" to="/index">主页</Link></span>
+                                    <span key="2"><Link activeClassName='active' key="2" title="个人信息" to="/info">个人信息</Link></span>
+                                    <span key="3"><Link activeClassName='active' key="3" title="文章" to="/post">发布文章</Link></span>
+                                    <span key="4"><Link activeClassName='active' key="4" title="文章目录" to="/catalog">文章目录</Link></span>
+                                    <span key="5"><a key="5" onClick={this.exitBlog.bind(this)} >退出</a></span>
                                 </div>
                             ):(
                                 <div>
@@ -93,7 +94,11 @@ class Main extends Component{
                         </QueueAnim>
                     </div>
                 </article>
-                <Dialog/>
+                {/*<RUI.Dialog ref="dialog" title="测试标题" draggable={false} buttons="submit,cancel" onCancel={this.dialogCancel} onSubmit={this.dialogSubmit}>*/}
+                    {/*<div style={{width:'240px', wordWrap:'break-word'}}>*/}
+                        {/*<p>在这里可以自定义任何节点和内容</p>*/}
+                    {/*</div>*/}
+                {/*</RUI.Dialog>*/}
             </div>
 
         )
@@ -105,7 +110,8 @@ function mapStateToProps(state) {
     //     routerState = 1
     // }
     return {
-        routerState : state.getIn(['getAuthority','routerState'])
+        routerState : state.getIn(['getAuthority','routerState']),
+        authorState : state.getIn(['reduceInfo', 'data', 'success'])
     }
 
 }

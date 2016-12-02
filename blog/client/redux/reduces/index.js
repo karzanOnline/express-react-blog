@@ -20,6 +20,8 @@ import getAuthority from './authorityReduce';
 import editInfo from './infoReduce';
 // 单个用户所有文章
 import UserPost from './userPost';
+// 获取用户信息
+import reduceInfo from './navContent';
 
 
 // let name = Object.assign({},Decompose(test),{title:'jjj'});
@@ -56,6 +58,7 @@ const indexReduces = combineReducers(
         getAuthority,
         editInfo,
         UserPost,
+        reduceInfo,
         indexPost), { routing: routerReducer })
 );
 

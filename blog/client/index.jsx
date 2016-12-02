@@ -10,6 +10,8 @@ import AppRouter from './router';
 import helloStore from './redux/stores/helloStore';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import { browserHistory } from 'react-router';
+//公共js
+
 
 const history = syncHistoryWithStore(browserHistory, helloStore, {
     selectLocationState(state) {

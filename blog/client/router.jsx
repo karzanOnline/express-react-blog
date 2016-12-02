@@ -14,6 +14,7 @@ import PostIndex from './postIndex';
 import EditInfo from './editInfo';
 import UserPost from './userPost';
 import MainArticle from './mainArticle';
+import Catalog from './catalog';
 
 class AppRouter extends Component{
     constructor(props) {
@@ -36,6 +37,7 @@ class AppRouter extends Component{
                         <Route path="register" component={Register} title="注册" />
                         <Route path="u/:paramName" component={UserPost} title ="个人文章"/>
                         <Route path="aticle" component ={MainArticle} title="单篇文章"/>
+                        <Route path="catalog" component ={Catalog} title="文章目录"/>
                     </Route>
                 </Router>
                 </QueueAnim>

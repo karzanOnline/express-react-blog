@@ -7,20 +7,35 @@
 .wrap-info{
   position: relative;
   display: flex;
+  margin-bottom: 20px;
+  align-items: center;
   .info-pic{
+    width: 80px;
     margin-right: 10px;
     line-height: 70px;
-    text-align: center;
+    text-align: right;
   }
   .info-icon{
     width: 70px;
     height: 70px;
     border-radius: 50%;
+    border: 1px solid #dddddd;
   }
   .upload-button{
     position: absolute;
     top: 25%;
-    left :150px
+    left :193px
+  }
+  .rui-input{
+
+    @include horizontal-input-text();
+    &:focus{
+      @include input-text-focus();
+    }
+    height: 36px;
+  }
+  .submit{
+    @include horizontal-button();
   }
 
 }

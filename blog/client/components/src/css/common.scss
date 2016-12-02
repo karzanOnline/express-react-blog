@@ -1,0 +1,58 @@
+@import './function';
+@import './reset';
+@import './grid';
+
+/* common */
+.radius {
+  @include prefixer('border-radius', 6px 6px);
+}
+
+.shadow {
+  @include prefixer('box-shadow', 0 0 10px #666)
+}
+
+.small {
+  width:100px;
+}
+
+.medium {
+  width:240px;
+}
+
+.large {
+  width:480px;
+}
+
+.full {
+  width:100%;
+}
+
+.left {
+  @include float();
+}
+
+.right {
+  @include float(right);
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+[class*="rui-"] {
+  transition : box-shadow .3s ease-out,left .3s ease-out,top .3s ease-out,opacity .3s ease-out,transform .3s ease-out,border-color .3s ease-out,border-width .3s ease-out,color .3s ease-out,width .3s ease-out,height .3s ease-out,background-color .3s ease-out;
+  font-size:12px;
+  box-sizing:border-box;
+  :after, :before {
+    box-sizing:border-box;
+  }
+}
+
+input::-webkit-input-placeholder {
+  color:#ccc;
+}

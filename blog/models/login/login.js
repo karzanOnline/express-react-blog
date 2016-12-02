@@ -17,18 +17,25 @@ function Login(req,res) {
             req.flash('error', '用户不存在!');
             res.send(Result.set(false,'用户不存在!',{msg:err}));
             //return res.redirect('/login');//用户不存在则跳转到登录页
-        }
-        console.log(user);
-        //检查密码是否一致
-        if (user.password != password) {
+        }else if(user.password != password){
             req.flash('error', '密码错误!');
             res.send(Result.set(false,'密码错误!',{}));
-            //return res.redirect('/login');//密码错误则跳转到登录页
+        }else{
+            req.session.user = user;
+            req.flash('success', '登陆成功!');
+            res.send(Result.set(true,'登陆成功!',{msg:'J000000'}));
         }
-        //用户名密码都匹配后，将用户信息存入 session
-        req.session.user = user;
-        req.flash('success', '登陆成功!');
-        res.send(Result.set(true,'登陆成功!',{msg:'J000000'}));
+        // console.log(user);
+        // //检查密码是否一致
+        // if (user.password != password) {
+        //     req.flash('error', '密码错误!');
+        //     res.send(Result.set(false,'密码错误!',{}));
+        //     //return res.redirect('/login');//密码错误则跳转到登录页
+        // }
+        // //用户名密码都匹配后，将用户信息存入 session
+        // req.session.user = user;
+        // req.flash('success', '登陆成功!');
+        // res.send(Result.set(true,'登陆成功!',{msg:'J000000'}));
         //res.redirect('/');//登陆成功后跳转到主页
     });
 }
