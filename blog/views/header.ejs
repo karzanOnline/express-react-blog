@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <title>Multiplayer online blog</title>
     <!--<link rel="stylesheet" href="/css/style.css?v=1">-->
-    <!--<link rel="stylesheet" href="/dist/bundle.css">-->
-    <link rel="stylesheet" href="http://127.0.0.1:9090/bundle.css">
+    <% if (env !== "production") { %>
+        <link rel="stylesheet" href="http://127.0.0.1:9090/bundle.css">
+    <% } else {%>
+        <link rel="stylesheet" href="/dist/bundle.css">
+    <% } %>
 </head>
 <body>
 
