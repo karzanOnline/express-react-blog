@@ -21,6 +21,7 @@
     "co-body": "latest",
     "co-views": "~0.2.0",
     "compress": "^0.99.0",
+    "compression": "^1.6.2",
     "connect-flash": "0.1.1",
     "connect-mongo": "latest",
     "cookie-parser": "~1.4.3",
