@@ -11,6 +11,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var settings = require('./setting');
 var flash = require('connect-flash');
+var compress = require('compress');
 var users = require('./routes/users');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
@@ -32,12 +33,14 @@ app.use(session({
     url: settings.url,
 }));
 
+app.use(compress());
 // 设置 views 文件夹为存放视图文件的目录, 即存放模板文件的地方,__dirname 为全局变量,存储当前正在执行的脚本所在的目录。
 app.set('views', path.join(__dirname, 'views'));
 /* 设置视图模板引擎为 ejs*/
 app.set('view engine', 'ejs');
 /* 添加flash功能*/
 app.use(flash());
+
 /* 添加logger中间件
 * 2016.09.12
 * */
