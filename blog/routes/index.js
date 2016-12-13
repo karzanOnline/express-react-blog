@@ -1,7 +1,4 @@
-// var express = require('express');
-// var router = express.Router();
-// module.exports = router;
-// require('babel-core/register');
+
 var fs = require('fs');
 var Reg = require('../models/login/reg');
 var Login = require('../models/login/login');
@@ -88,8 +85,8 @@ module.exports = function (app) {
         user: req.session.user,
         success: req.flash('success').toString(),
         error: req.flash('error').toString(),
-        //env : 'production'
-        env : 'dev'
+        env : 'production'
+        //env : 'dev'
       });
   });
 
