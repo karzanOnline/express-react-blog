@@ -12,6 +12,7 @@ const codeStyle = {
     maxHeight : 'inherit'
 };
 
+
 class MainArticle extends React.Component{
     constructor (props){
         super(props);
@@ -25,15 +26,29 @@ class MainArticle extends React.Component{
     }
     
     componentDidMount (){
+        this.getArticle();
+    }
+
+    highlightChange (){
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    }
+
+    getArticle (){
         let _this = this;
         let paramObj = oGetParam(this.props.location.search);
         $.post('/article',paramObj,(data)=>{
             if(data.success){
-                _this.setState({postData:data.resultMap.post})
+                _this.setState({postData:data.resultMap.post},function () {
+                   _this.highlightChange();
+                });
             }else{
-                alert(data.description)
+                Alert.alert({
+                    title:'提示',
+                    message: data.description
+                })
             }
-
         },'json');
     }
 
@@ -41,7 +56,6 @@ class MainArticle extends React.Component{
         var _this = this;
         let paramObj = oGetParam(this.props.location.search);
         paramObj.markdown = true;
-
         $.ajax({
             url : '/article',
             type : 'post',
@@ -50,9 +64,7 @@ class MainArticle extends React.Component{
             success : function (data) {
                 _this.refs.fullLoading.close();
                 if(data.success){
-                    _this.setState({
-                        editData : data.resultMap.post
-                    })
+                    _this.setState({editData : data.resultMap.post})
                 }else{
                     Alert.alert({
                         title:'',
@@ -64,9 +76,7 @@ class MainArticle extends React.Component{
                 _this.refs.fullLoading.open();
             }
         });
-
         this.refs.Dialog.show();
-
     }
 
     deleteArticle (){
@@ -75,6 +85,7 @@ class MainArticle extends React.Component{
 
     submitPost (){
         var _this = this;
+        var stateTimeout,dialogTimeOut;
         let paramObj = oGetParam(this.props.location.search);
         paramObj.post = _this.refs.post_body.value;
         paramObj.title = _this.refs.post_title.value;
@@ -87,17 +98,18 @@ class MainArticle extends React.Component{
             },
             success : function (data) {
                 _this.refs.fullLoading.close();
-                if(data.suucess) {
-                    Alert.alert({
-                        title:'提示',
-                        message: '操作成功！'
-                    });
-                }else{
-                    Alert.alert({
-                        title:'提示',
-                        message: data.description
-                    });
-                }
+                Alert.alert({
+                    title:'提示',
+                    message: data.description
+                });
+                dialogTimeOut = setTimeout(function () {
+                    Alert.clearAll();
+                    _this.refs.Dialog.hide();
+                    data.success && (stateTimeout = setTimeout(function () {
+                        _this.getArticle();
+                    },1000))
+                },2000);
+
             },
             beforeSend : function () {
                 _this.refs.fullLoading.open();
@@ -125,7 +137,9 @@ class MainArticle extends React.Component{
                             <span>作者：</span><a >{state.postData&&state.postData.name}</a>  |
                             <span>日期：</span>{state.postData&&state.postData.time.minute}
                         </p>
-                        <p dangerouslySetInnerHTML={{__html:state.postData&&state.postData.post}}></p>
+                        <div key='insert-dangerously' dangerouslySetInnerHTML={{__html:state.postData.post}}>
+
+                        </div>
                     </content>
                     <footer className="article-info">
                         <button className="button" onClick={this.editArticle.bind(this)}>编辑</button>
