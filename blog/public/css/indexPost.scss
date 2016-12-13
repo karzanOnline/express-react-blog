@@ -21,7 +21,7 @@
     line-height: 1.8em;
     padding-right: 7.6923%;
     padding-left: 7.6923%;
-    max-height: 560px;
+    max-height: 200px;
     overflow: hidden;
     .info{
       cursor: pointer;
@@ -76,16 +76,16 @@
   .main-article-entry{
     max-height: inherit;
   }
-  pre{
-    font:12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    padding: 16px;
-    margin-bottom: 20px;
-    overflow: auto;
-    font-size: 80%;
-    line-height: 1.45;
-    background-color: #f7f7f7;
-    border-radius: 3px;
-  }
+  //pre{
+  //  font:12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  //  padding: 16px;
+  //  margin-bottom: 20px;
+  //  overflow: auto;
+  //  font-size: 80%;
+  //  line-height: 1.45;
+  //  background-color: #f7f7f7;
+  //  border-radius: 3px;
+  //}
   ul,li{
     list-style: inherit;
     margin: .3em 26px;
