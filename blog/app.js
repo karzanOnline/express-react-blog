@@ -21,7 +21,7 @@ var http = require('http');
 
 var server = http.createServer(app);
 
-var port = process.env.PORT || 80;
+var port = process.env.PORT || 3000;
 //
 app.use(session({
     secret: settings.cookieSecret,
