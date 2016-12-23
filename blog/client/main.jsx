@@ -16,6 +16,7 @@ import Alert from './components/src/js/managers/DialogManager';
 import { getMainInfo, getStateChange } from './redux/actions/navContent';
 
 
+
 class Main extends Component{
     constructor(props){
         super(props);
@@ -67,15 +68,16 @@ class Main extends Component{
                         {
                             props.authorState?(
                                 <div>
-                                    <span key="1"><Link activeClassName='active' key="1" title="主页" to="/index">主页</Link></span>
-                                    <span key="2"><Link activeClassName='active' key="2" title="个人信息" to="/info">个人信息</Link></span>
-                                    <span key="3"><Link activeClassName='active' key="3" title="文章" to="/post">发布文章</Link></span>
-                                    <span key="4"><Link activeClassName='active' key="4" title="文章目录" to="/catalog">文章目录</Link></span>
-                                    <span key="5"><a key="5" onClick={this.exitBlog.bind(this)} >退出</a></span>
+                                    <span key="1"><Link activeClassName='active' key="1" title="广场" to="/square">广场</Link></span>
+                                    <span key="2"><Link activeClassName='active' key="2" title="个人主页" to="/index">个人主页</Link></span>
+                                    <span key="3"><Link activeClassName='active' key="3" title="个人信息" to="/info">个人信息</Link></span>
+                                    <span key="4"><Link activeClassName='active' key="4" title="文章" to="/post">发布文章</Link></span>
+                                    <span key="5"><Link activeClassName='active' key="5" title="文章目录" to="/catalog">文章目录</Link></span>
+                                    <span key="6"><a key="6" onClick={this.exitBlog.bind(this)} >退出</a></span>
                                 </div>
                             ):(
                                 <div>
-                                    <span><Link activeClassName='active' key="1" title="主页" to="/index">主页</Link></span>
+                                    <span><Link activeClassName='active' key="1" title="广场" to="/square">广场</Link></span>
                                     <span><Link activeClassName='active' key="2" title="登陆" to="/login">登陆</Link></span>
                                     <span><Link activeClassName='active' key="3" title="注册" to="/register">注册</Link></span>
                                 </div>
@@ -86,7 +88,6 @@ class Main extends Component{
                 </nav>
                 <article className="main-article">
                     <div>
-                      {/*  <Header {...props.location}/>*/}
                         <QueueAnim type={['right', 'left']} className="router-wrap">
                             <div className="article-inner">
                                 {React.cloneElement(props.children)} 
@@ -94,11 +95,6 @@ class Main extends Component{
                         </QueueAnim>
                     </div>
                 </article>
-                {/*<RUI.Dialog ref="dialog" title="测试标题" draggable={false} buttons="submit,cancel" onCancel={this.dialogCancel} onSubmit={this.dialogSubmit}>*/}
-                    {/*<div style={{width:'240px', wordWrap:'break-word'}}>*/}
-                        {/*<p>在这里可以自定义任何节点和内容</p>*/}
-                    {/*</div>*/}
-                {/*</RUI.Dialog>*/}
             </div>
 
         )

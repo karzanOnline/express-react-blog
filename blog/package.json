@@ -8,7 +8,7 @@
   "scripts": {
     "start": "npm install && cross-env NODE_ENV=production && node app",
     "server": "cross-env NODE_ENV=production&&node app",
-    "static": "webpack-dev-server --devtool eval --inline --progress --colors --hot --port 9090",
+    "static": "webpack-dev-server --devtool eval --inline --progress --colors --hot --port 80",
     "build": "webpack -p  --config webpack.production.config.js --progress"
   },
   "dependencies": {

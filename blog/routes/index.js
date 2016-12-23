@@ -85,8 +85,8 @@ module.exports = function (app) {
         user: req.session.user,
         success: req.flash('success').toString(),
         error: req.flash('error').toString(),
-        env : 'production'
-        //env : 'dev'
+        //env : 'production'
+        env : 'dev'
       });
   });
 
