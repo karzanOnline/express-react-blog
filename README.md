@@ -39,7 +39,7 @@ node app(.js)
 ```
 运行成功之后，直接在浏览器打开 http://127.0.0.1:3000 即可，默认的端口号是8080。
 
-![123](https://raw.githubusercontent.com/karzanOnline/express-mongodb-react-blog/master/jdfw.gif)
+![](https://raw.githubusercontent.com/karzanOnline/express-mongodb-react-blog/master/jdfw.gif)
 
 
 ## 开发日志
